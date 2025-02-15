@@ -5,7 +5,7 @@ ASPIRA is an AI-driven mentorship platform designed to connect mentors and mente
 
 ## Technologies Used
 - **Backend**: PHP, MySQL
-- **Frontend**: HTML, CSS, JavaScript (React or Vue.js)
+- **Frontend**: HTML, CSS, JavaScript 
 - **Database**: MySQL
 - **API Integration**: 
 - **Version Control**: GitHub
