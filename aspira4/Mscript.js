@@ -75,7 +75,6 @@ document.getElementById("first-name").addEventListener("blur", function () {
 
     // ✅ التحقق من رقم الهاتف
      if (!/^\d{8,15}$/.test(phone.value.trim())) {
-        phoneError.innerText = "Phone number must be between 8 and 15 digits";
         phone.style.borderColor = "red";
         phoneError.style.display = "block";
         valid = false;
@@ -113,6 +112,7 @@ document.getElementById("first-name").addEventListener("blur", function () {
             if (!isEmailVerified) {
                 alert("Please verify your email before proceeding.");
                 return;
+                
             }
             if (validateStep1(form)) {
                 step1s[index].classList.add("hidden");
@@ -159,11 +159,10 @@ let modal = document.getElementById("confirmation-modal");
     }
 
   // ✅ EMAIL & OTP Verification
+// ✅ EMAIL & OTP Verification
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
 const nextBtn = document.querySelector(".btn.next-step");
-
-
 
 // Create OTP Input Box (Hidden by Default)
 const verificationBox = document.createElement("div");
@@ -177,10 +176,39 @@ emailInput.parentElement.appendChild(verificationBox);
 verificationBox.style.display = "none";
 nextBtn.disabled = true;
 
+let isOtpSent = false;
+
+
 // ✅ Check Email & Show OTP Box
 emailInput.addEventListener("blur", function () {
     let email = emailInput.value.trim();
-    if (email.includes("@")) {
+
+    // ✅ إذا كان الحقل فارغًا، لا تعرض أي رسالة خطأ فقط اجعل الإطار أحمر
+    if (email === "") {
+        emailError.innerText = "";
+        emailError.style.display = "none";
+        emailInput.style.borderColor = "red";
+        verificationBox.style.display = "none";
+        nextBtn.disabled = true;
+        return;
+    }
+
+    // ✅ إذا لم يكن البريد الإلكتروني صالحًا
+    if (!email.includes("@") || !email.includes(".")) {
+        emailError.innerText = "Please enter a valid email address";
+        emailError.style.display = "block";
+        emailInput.style.borderColor = "red";
+        verificationBox.style.display = "none";
+        nextBtn.disabled = true;
+        return;
+    } else {
+        emailError.style.display = "none";
+        emailInput.style.borderColor = ""; // إعادة تعيين لون الإطار
+    }
+
+    // ✅ إرسال طلب التحقق من البريد الإلكتروني فقط إذا لم يتم إرسال OTP سابقًا
+    if (!isOtpSent) {
+        isOtpSent = true;
         fetch("Mentor_Registration.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -192,15 +220,31 @@ emailInput.addEventListener("blur", function () {
             if (data.trim() === "exists") {
                 emailError.innerText = "This email is already registered";
                 emailError.style.display = "block";
+                emailInput.style.borderColor = "red";
                 verificationBox.style.display = "none";
+                nextBtn.disabled = true;
             } else if (data.trim() === "code_sent") {
                 emailError.style.display = "none";
+                emailInput.style.borderColor = "green";
                 verificationBox.style.display = "block";
                 alert("✅ OTP has been sent to your email!"); // ✅ رسالة تأكيد إرسال OTP
             }
         })
-        .catch(error => console.error("Error:", error));
+        .catch(error => {
+            console.error("Error:", error);
+            isOtpSent = false;  // ✅ Reset on failure
+        });
     }
+});
+
+// ✅ عند تغيير البريد الإلكتروني، إعادة تعيين التحقق وإخفاء صندوق OTP
+emailInput.addEventListener("input", function () {
+    isOtpSent = false;  
+    isEmailVerified = false;  
+    verificationBox.style.display = "none";  
+    nextBtn.disabled = true;  
+    emailError.style.display = "none"; 
+    emailInput.style.borderColor = "";  
 });
 
 // ✅ Handle OTP Verification
@@ -219,7 +263,7 @@ document.addEventListener("click", function (event) {
             if (data.trim() === "verified") {
                 document.getElementById("code-error").style.display = "none";
                 alert("✅ Email verified successfully!");
-                isEmailVerified = true; // ✅ تأكيد التحقق من البريد الإلكتروني
+                isEmailVerified = true;
                 nextBtn.disabled = false;
 
                 // ✅ إخفاء صندوق إدخال OTP بعد نجاح التحقق
@@ -233,24 +277,6 @@ document.addEventListener("click", function (event) {
     }
 });
 
-// ✅ Prevent clicking "Next" if email is not verified
-nextBtn.addEventListener("click", function (event) {
-    if (!isEmailVerified) {
-        event.preventDefault(); // ✅ منع الانتقال إذا لم يتم التحقق
-        alert("⚠️ Please verify your email before proceeding.");
-    }
-});
-
-
-
-    // ✅ Ensure Submit Button is Only Clickable After Validations
-    submitBtn.addEventListener("click", function (event) {
-        const form = submitBtn.closest("form");
-        if (!validateStep2(form) && !validateStep1(form)) {
-            event.preventDefault();
-            alert("Please complete all required fields before submitting.");
-        }
-    });
 
 });
 

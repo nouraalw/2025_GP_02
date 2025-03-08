@@ -345,6 +345,15 @@ function validatePassword() {
         special: document.getElementById("rule-special"),
     };
     let nextBtn = document.querySelector(".btn.next-step");
+    
+    if (password === "") {
+        passwordField.style.borderColor = "red";
+        for (let key in rules) {
+            rules[key].innerHTML = "";
+        }
+        nextBtn.disabled = true;
+        return;
+    }
 
     let lengthCheck = password.length >= 8;
     let uppercaseCheck = /[A-Z]/.test(password);

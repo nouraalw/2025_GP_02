@@ -28,7 +28,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aspira Mentoring</title>
+    <title>Mentor Center</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
 <style>
         	/* Color Variables */
@@ -564,7 +564,7 @@ document.addEventListener("DOMContentLoaded", function () {
        
         <div class="footer-links">
             <div  id="aboutus">
-             <h3 style="color:#a576ff">About Us :</h3>
+             <h3 style="color:#4b398e;">About Us :</h3>
              <p class="aboutp">a mentorship platform designed to connect</p>
              <p class="aboutp">experenced professionals with ambitious individuals</p>
              <p class="aboutp">seeking guidance and growth.Through structured</p> 
@@ -575,7 +575,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
             
             <div id="contact" >
-          <h3 style="color:#a576ff">Contact Info :</h3>
+          <h3 style="color:#4b398e;">Contact Info :</h3>
          
         <p>Email: aspira@gmail.com</p>
          

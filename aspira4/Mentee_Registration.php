@@ -510,7 +510,7 @@ header {
                     <div class="input-group">
                       <label for="email">Email</label>
                       <input type="email" id="email" name="email" required>
-                    <p class="error-message" id="email-error" style="color: red; display: none;">Email must contain "@gmail.com"</p>
+                    <p class="error-message" id="email-error" style="color: red; display: none;">Email must be valid</p>
                     </div>
 
 
@@ -582,6 +582,14 @@ function validatePassword() {
         special: document.getElementById("rule-special"),
     };
     let nextBtn = document.querySelector(".btn.next-step");
+    if (password === "") {
+        passwordField.style.borderColor = "red";
+        for (let key in rules) {
+            rules[key].innerHTML = "";
+        }
+        nextBtn.disabled = true;
+        return;
+    }
 
     let lengthCheck = password.length >= 8;
     let uppercaseCheck = /[A-Z]/.test(password);
@@ -640,138 +648,84 @@ function togglePassword() {
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+       document.addEventListener("DOMContentLoaded", function () {
     const nextBtns = document.querySelectorAll(".next-step");
     const prevBtns = document.querySelectorAll(".prev-step");
-    const submitBtns = document.querySelectorAll(".btn[type='submit']");
+    const submitBtn = document.querySelector(".btn[type='submit']");
     const step1s = document.querySelectorAll(".step-1");
     const step2s = document.querySelectorAll(".step-2");
     const steps = document.querySelectorAll(".progress-bar .step");
 
-     function validateName(nameField) {
-    const invalidPattern = /[^A-Za-z\s]/; // التحقق من وجود أرقام أو رموز
-    const nextBtn = document.querySelector(".next-step"); // زر "Next"
+    let isEmailVerified = false; // التحقق من البريد الإلكتروني
 
-    // ✅ إذا كان الحقل فارغًا، لا تعرض رسالة خطأ ولكن اجعل الإطار أحمر، ومنع "Next"
-    if (!nameField.value.trim()) {
-        nameField.style.borderColor = "red";
-        nameField.nextElementSibling.style.display = "none"; // لا تعرض الرسالة
-        nextBtn.disabled = true; // تعطيل زر "Next"
-        return false;
+    function validateName(nameField) {
+        const invalidPattern = /[^A-Za-z\s]/;
+        let isValid = true;
+
+        if (!nameField.value.trim()) {
+            nameField.style.borderColor = "red";
+            nameField.nextElementSibling.style.display = "none";
+            isValid = false;
+        } else if (invalidPattern.test(nameField.value)) {
+            nameField.style.borderColor = "red";
+            nameField.nextElementSibling.innerText = "Only letters are allowed";
+            nameField.nextElementSibling.style.display = "block";
+            isValid = false;
+        } else {
+            nameField.style.borderColor = "green";
+            nameField.nextElementSibling.style.display = "none";
+        }
+
+        return isValid;
     }
 
-    // ✅ إذا كان هناك أرقام أو رموز في الاسم، عرض رسالة الخطأ ومنع "Next"
-    if (invalidPattern.test(nameField.value)) {
-        nameField.style.borderColor = "red";
-        nameField.nextElementSibling.innerText = "Only letters are allowed in the name";
-        nameField.nextElementSibling.style.display = "block";
-        nextBtn.disabled = true; // تعطيل زر "Next"
-        return false;
-    }
+    document.getElementById("first-name").addEventListener("blur", function () {
+        validateName(this);
+    });
 
-    // ✅ إذا كان الاسم صحيحًا، أخفِ رسالة الخطأ، اجعل الإطار أخضر، وفعل "Next"
-    nameField.style.borderColor = "green";
-    nameField.nextElementSibling.style.display = "none";
-    nextBtn.disabled = false; // تفعيل زر "Next"
-    return true;
-}
-
-
-
-document.getElementById("first-name").addEventListener("blur", function () {
-    validateName(this);
-});
-
-document.getElementById("last-name").addEventListener("blur", function () {
-    validateName(this);
-});
-
+    document.getElementById("last-name").addEventListener("blur", function () {
+        validateName(this);
+    });
 
     function validateStep1(form) {
-  let valid = true;
+        let valid = true;
+        const firstName = form.querySelector("#first-name");
+        const lastName = form.querySelector("#last-name");
+        const email = form.querySelector("#email");
+        const phone = form.querySelector("#phone");
+        const password = form.querySelector("#password");
+        const globalError = form.querySelector("#form-error");
 
-  const firstName = form.querySelector("#first-name");
-  const lastName = form.querySelector("#last-name");
-  const email = form.querySelector("#email");
-  const phone = form.querySelector("#phone");
-  const password = form.querySelector("#password");
-  const globalError = form.querySelector("#form-error");
+        if (globalError) globalError.style.display = "none";
 
-  // Hide global error at the start
-  if (globalError) {
-    globalError.style.display = "none";
-  }
+        if (!validateName(firstName) || !validateName(lastName)) valid = false;
 
-  // --- 1) First Name
-  const firstNameStatus = validateName(firstName);
-  // Hide the field-specific error by default
-  firstName.nextElementSibling.style.display = "none";
+        // التحقق من البريد الإلكتروني
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email.value)) {
+            email.style.borderColor = "red";
+            email.nextElementSibling.style.display = "block";
+            valid = false;
+        } else {
+            email.style.borderColor = "green";
+            email.nextElementSibling.style.display = "none";
+        }
 
-  if (firstNameStatus === "empty") {
-    // If empty, do NOT show "Invalid name" — only set border red
-    firstName.style.borderColor = "red";
-    // We'll show the global error at the end if valid is false
-    valid = false;
-  } else if (firstNameStatus === "invalid") {
-    // If invalid, show the field-specific error
-    firstName.style.borderColor = "red";
-    firstName.nextElementSibling.style.display = "block"; 
-    valid = false;
-  } else {
-    // If valid
-    firstName.style.borderColor = "green";
-  }
+        // التحقق من رقم الهاتف
+        if (phone && !/^\d{8,15}$/.test(phone.value)) {
+            phone.style.borderColor = "red";
+            phone.nextElementSibling.style.display = "block";
+            valid = false;
+        } else {
+            phone.style.borderColor = "green";
+            phone.nextElementSibling.style.display = "none";
+        }
 
-  // --- 2) Last Name
-  const lastNameStatus = validateName(lastName);
-  lastName.nextElementSibling.style.display = "none";
-
-  if (lastNameStatus === "empty") {
-    lastName.style.borderColor = "red";
-    valid = false;
-  } else if (lastNameStatus === "invalid") {
-    lastName.style.borderColor = "red";
-    lastName.nextElementSibling.style.display = "block";
-    valid = false;
-  } else {
-    lastName.style.borderColor = "green";
-  }
-
-  // --- 3) Email (example checks)
-  if (!email.value.trim()) {
-    email.style.borderColor = "red";
-    email.nextElementSibling.style.display = "block";
-    valid = false;
-  } else if (!email.value.includes("@")) {
-    email.style.borderColor = "red";
-    email.nextElementSibling.style.display = "block";
-    valid = false;
-  } else {
-    email.style.borderColor = "green";
-    email.nextElementSibling.style.display = "none";
-  }
-
-  // --- 4) Phone (example checks)
-  if (phone) {
-    phone.nextElementSibling.style.display = "none";
-    if (!phone.value.trim()) {
-      phone.style.borderColor = "red";
-      valid = false;
-    } else {
-      // Example: must be 8 and 15 digits
-      const phonePattern = /^[0-9]{8,15}$/;
-      if (!phone.value.match(phonePattern)) {
-        phone.style.borderColor = "red";
-        phone.nextElementSibling.style.display = "block";
-        valid = false;
-      } else {
-        phone.style.borderColor = "green";
-      }
-    }
-  }
-
-  // --- 5) Password (example checks)
-  if (!password.value.trim()) {
+        if (!valid && globalError) {
+            globalError.style.display = "block";
+            globalError.textContent = "Please complete all fields";
+        }
+        if (!password.value.trim()) {
     password.style.borderColor = "red";
     password.parentElement.nextElementSibling.style.display = "block";
     valid = false;
@@ -787,24 +741,31 @@ document.getElementById("last-name").addEventListener("blur", function () {
     }
   }
 
-  // --- 6) Show the global error only if something is invalid or empty
-  if (!valid && globalError) {
-    globalError.style.display = "block";
-    globalError.textContent = "You didn't complete all fields";
-  }
-
-  return valid;
-}
-
+        return valid;
+    }
 
     nextBtns.forEach((btn, index) => {
         btn.addEventListener("click", function () {
             const form = btn.closest("form");
+
+            // التحقق من تأكيد البريد الإلكتروني قبل الانتقال للخطوة التالية
+            if (!isEmailVerified) {
+    alert("️ Please verify your email before proceeding.");
+    return;
+}
+
+            else {
+                // إخفاء رسالة الخطأ إذا كان البريد الإلكتروني مؤكدًا
+                const emailError = document.getElementById("email-error");
+                emailError.style.display = "none";
+            }
+
+            // التحقق من صحة بيانات النموذج قبل الانتقال إلى الخطوة التالية
             if (validateStep1(form)) {
                 step1s[index].classList.add("hidden");
                 step2s[index].classList.remove("hidden");
 
-                // Change step 1 to ✅
+                // تحديث شريط التقدم وإضافة علامة ✅
                 steps[index * 2].classList.add("completed");
                 steps[index * 2].innerHTML = "✓";
                 steps[index * 2 + 1].classList.add("active");
@@ -816,127 +777,14 @@ document.getElementById("last-name").addEventListener("blur", function () {
         btn.addEventListener("click", function () {
             step2s[index].classList.add("hidden");
             step1s[index].classList.remove("hidden");
-
-            // Reset step 1
             steps[index * 2].classList.remove("completed");
             steps[index * 2].innerHTML = "1";
             steps[index * 2 + 1].classList.remove("active");
         });
     });
 
-  
-});
-function togglePassword() {
-    let passwordField = document.getElementById("password");
-    passwordField.type = passwordField.type === "password" ? "text" : "password";
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    const emailError = document.getElementById("email-error");
-    const phoneError = document.getElementById("phone-error");
-    const submitBtn = document.querySelector(".btn[type='submit']");
-
-    let emailExists = false;
-    let phoneExists = false;
-
-    // ✅ Validate Email Format (Must contain "@.....com")
-    emailInput.addEventListener("input", function () {
-        let email = emailInput.value.trim();
-        if (!email.includes("@")) {
-            emailInput.style.borderColor = "red";
-            emailError.innerText = " The Email must vailed";
-            emailError.style.display = "block";
-        } else {
-            emailInput.style.borderColor = "";
-            emailError.style.display = "none";
-
-            // ✅ Check Email Availability Only if Valid Format
-            checkAvailability("email", email, emailError, function (exists) {
-                emailExists = exists;
-                toggleSubmitButton();
-            });
-        }
-    });
-
-    // ✅ Validate Phone Number in Real-Time
-    phoneInput.addEventListener("blur", function () {
-        let phone = phoneInput.value.trim();
-        if (phone !== "") {
-            checkAvailability("phone", phone, phoneError, function (exists) {
-                phoneExists = exists;
-                toggleSubmitButton();
-            });
-        }
-    });
-
-    function checkAvailability(type, value, errorElement, callback) {
-        if (value === "") return;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "Mentee_Registration.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    if (xhr.responseText.trim() === "exists") {
-                        errorElement.innerText = type === "email" ? " This email is already registered" : " This phone number is already registered ";
-                        errorElement.style.display = "block";
-                        callback(true);
-                    } else {
-                        errorElement.style.display = "none";
-                        callback(false);
-                    }
-                } else {
-                    console.error("⚠️ AJAX request failed. Status:", xhr.status);
-                }
-            }
-        };
-
-        xhr.send("check_availability=" + type + "&" + type + "=" + encodeURIComponent(value));
-    }
-
-    function toggleSubmitButton() {
-        submitBtn.disabled = emailExists || phoneExists;
-        submitBtn.style.cursor = submitBtn.disabled ? "not-allowed" : "pointer";
-    }
-});
-
-////
-
-document.addEventListener("DOMContentLoaded", function () {
-    const emailInput = document.getElementById("email");
-    const otpContainer = document.getElementById("otp-container");
-    const verificationCodeInput = document.getElementById("verification-code");
-    const verifyBtn = document.getElementById("verify-code");
-    const nextBtn = document.querySelector(".btn.next-step");
-    let isEmailVerified = false;
-
-    // ✅ Email verification and OTP box display
-    emailInput.addEventListener("blur", function () {
-        let email = emailInput.value.trim();
-        fetch("Mentee_Registration.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: "verify_email=1&email=" + encodeURIComponent(email)
-        })
-        .then(response => response.text())
-        .then(data => {
-            if (data === "exists") {
-                otpContainer.style.display = "none";  
-            } else if (data === "code_sent") {
-                otpContainer.style.display = "block";  
-                alert("✅ OTP has been sent to your email!");
-            }
-        })
-        .catch(error => console.error("Error:", error));
-    });
-
-    // ✅ OTP Verification
-    verifyBtn.addEventListener("click", function () {
-        let code = verificationCodeInput.value.trim();
+    document.getElementById("verify-code").addEventListener("click", function () {
+        let code = document.getElementById("verification-code").value.trim();
         fetch("Mentee_Registration.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -947,24 +795,73 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data === "verified") {
                 alert("✅ Email verified successfully!");
                 isEmailVerified = true;
-                nextBtn.disabled = false;  
-                
-                // ✅ Hide OTP container after successful verification
-                otpContainer.style.display = "none";  
-                
+                nextBtns.forEach(btn => btn.disabled = false);
+                document.getElementById("otp-container").style.display = "none";
             } else {
-                alert("❌ Incorrect OTP. Please try again.");
+                const otpError = document.getElementById("code-error");
+                otpError.style.display = "block";
+                otpError.textContent = "Incorrect code";
             }
         })
         .catch(error => console.error("Error:", error));
     });
 
-    // ✅ Phone validation
+    document.getElementById("email").addEventListener("blur", function () {
+    let email = this.value.trim();
+    let emailInput = document.getElementById("email");
+    let emailError = document.getElementById("email-error");
+    let otpContainer = document.getElementById("otp-container");
+    let otpSent = false; // ✅ متغير لمنع إرسال OTP أكثر من مرة
+
+    if (email === "") {
+        emailError.innerText = "";
+        emailError.style.display = "none";
+        emailInput.style.borderColor = "red";
+        otpContainer.style.display = "none";
+        nextBtns.forEach(btn => btn.disabled = true);
+        return;
+    }
+
+    fetch("Mentee_Registration.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "verify_email=1&email=" + encodeURIComponent(email)
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data === "exists") {
+            emailInput.style.borderColor = "red"; // 🔴 تلوين الإطار بالأحمر
+            emailError.innerText = "This email is already registered.";
+            emailError.style.color = "red"; // 🔴 تغيير لون النص ليكون أحمر
+            emailError.style.display = "block";
+            isEmailVerified = false; // ❌ البريد غير صالح للاستخدام
+            otpSent = false; // ❌ عدم إرسال OTP
+            otpContainer.style.display = "none"; // ❌ إخفاء حقل OTP
+        } else if (data === "code_sent" && !otpSent) {
+            emailInput.style.borderColor = "green"; // ✅ تلوين الإطار بالأخضر
+            emailError.style.display = "none"; // ✅ إخفاء رسالة الخطأ
+            otpContainer.style.display = "block"; // ✅ عرض حقل OTP
+            alert("✅ OTP has been sent to your email!"); // ✅ إرسال OTP فقط لأول مرة
+            otpSent = true; // ✅ منع إرسال OTP مرة أخرى
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+
+    
     const phoneInput = document.getElementById("phone");
 const phoneError = document.getElementById("phone-error");
 
 phoneInput.addEventListener("blur", function () {
     let phone = phoneInput.value.trim();
+    if (phone === "") {
+        phoneError.innerText = ""; // لا تعرض أي رسالة
+        phoneError.style.display = "none";
+        phoneInput.style.borderColor = "red";
+        return;
+    } else {
+        phoneError.style.display = "none";
+    }
 
     // ✅ Validate that the phone number consists of exactly 8 and 15 digits
      if (!/^\d{8,15}$/.test(phone)) {
@@ -996,6 +893,7 @@ phoneInput.addEventListener("blur", function () {
     })
     .catch(error => console.error("Error checking phone number:", error));
 });
+
 
 });
 
