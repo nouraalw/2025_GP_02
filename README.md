@@ -1,11 +1,14 @@
-![image](https://github.com/user-attachments/assets/c94f3fb0-8eec-4d8c-b4a8-20a9b7de60c0) 
+![image](https://github.com/user-attachments/assets/a71e236f-0598-4dd2-8e91-18238bc2e55f)
+
 # ASPIRA 
 
 ## 🎯 Introduction
+
 ASPIRA is a digital platform that connects mentees with experienced mentors for career development. The system integrates AI-driven features such as course recommendations and a chatbot to guide users through their academic-to-career transitions. It includes features like session booking, rating system, session summaries, and notifications.
 
 
 ## 🔧 Technologies Used
+
 - **Backend**: PHP, MySQL
 - **Frontend**: HTML, CSS, JavaScript 
 - **Database**: MySQL 
@@ -13,6 +16,7 @@ ASPIRA is a digital platform that connects mentees with experienced mentors for 
 
 
 ## 🚀 Launching Instructions
+
 1. **Open your local server** (e.g., MAMP, XAMPP, or any local web server) 
 2. **Download** the ASPIRA project folder 
 3. **Import** the `aspira(6).sql` file into your local MySQL database 
