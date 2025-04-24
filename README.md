@@ -19,6 +19,6 @@ ASPIRA is a digital platform that connects mentees with experienced mentors for 
 - **4-** Update the port number in db_connection.php to match your local server’s port 
 - **5-** Check the vendor path in Mentor_Registration.php and Mentee_Registration.php:
   **-** 📌 It could be:
-      **-**(uploads/vendor/autoload.php)
-      **-**(vendor/autoload.php)
+       -     **-**(uploads/vendor/autoload.php)
+       -     **-**(vendor/autoload.php)
 - **6-** Run the project 🚀
