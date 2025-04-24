@@ -1,3 +1,4 @@
+![image](https://github.com/user-attachments/assets/d4474092-5edd-4d3a-b601-acbeccc80256)
 # ASPIRA 
 
 ## 🎯 Introduction
