@@ -12,7 +12,7 @@ ASPIRA is a digital platform that connects mentees with experienced mentors for 
 - **Backend**: PHP, MySQL
 - **Frontend**: HTML, CSS, JavaScript 
 - **Database**: MySQL 
-- **Version Control**: GitHub
+
 
 
 ## 🚀 Launching Instructions
