@@ -13,12 +13,12 @@ ASPIRA is a digital platform that connects mentees with experienced mentors for 
 
 
 ## 🚀 Launching Instructions
-- **1-** Open your local server (e.g., MAMP, XAMPP, or any local web server) 💻
-- **2-** Download the ASPIRA project folder 📂
-- **3-** Import the aspira(6).sql file into your local MySQL database 🗃️
-- **4-** Update the port number in db_connection.php to match your local server’s port ⚙️
+- **1-** Open your local server (e.g., MAMP, XAMPP, or any local web server) 
+- **2-** Download the ASPIRA project folder
+- **3-** Import the aspira(6).sql file into your local MySQL database 
+- **4-** Update the port number in db_connection.php to match your local server’s port 
 - **5-** Check the vendor path in Mentor_Registration.php and Mentee_Registration.php:
   **-** 📌 It could be:
--  (uploads/vendor/autoload.php)
--  (vendor/autoload.php)
+      **-**(uploads/vendor/autoload.php)
+      **-**(vendor/autoload.php)
 - **6-** Run the project 🚀
