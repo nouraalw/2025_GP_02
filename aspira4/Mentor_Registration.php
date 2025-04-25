@@ -9,7 +9,7 @@ session_start();  // Start session to store OTP
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
-require 'vendor/autoload.php';
+require 'uploads/vendor/autoload.php';
 
 //  Handle Email Verification Request (AJAX)
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["verify_email"])) {
