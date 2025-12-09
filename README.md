@@ -39,6 +39,7 @@ For the mentors :
 For the mentees :
 - Email : alawadtv0@gmail.com
 - Password : QAZ@qaz1
+
 For the admin :
 - Email : abd123@gmail.com
 - Password : 123456
