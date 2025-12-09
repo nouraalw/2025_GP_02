@@ -26,5 +26,6 @@ ASPIRA is a digital platform that connects mentees with experienced mentors for 
    - `uploads/vendor/autoload.php`  
    - `vendor/autoload.php`  
 6. **Run** the project 🚀
+7. Or use the website link : https://aspira.sbs/ 
 
 
