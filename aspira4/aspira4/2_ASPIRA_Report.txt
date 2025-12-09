@@ -1,0 +1,5359 @@
+ASPIRA
+supervised by
+Dr. Arwa Alsultan
+
+.
+.
+
+ASPIRA
+IT 496: Graduation Project Report
+Product Release-1
+Prepared by
+Aeshah Almuklifi, 443200713
+Luluh Alyahya, 443200609
+Shahad Alsalman, 443200818
+Ghadi Alzahrani, 443200533
+Noura Alwohaibi, 443200415
+Supervised by
+Dr. Arwa Alsultan
+second Semester -1446
+Fall 2024-2025
+
+2
+
+1.
+
+Introduction ...................................................................................................................... 8
+1.1.
+
+The Problem ............................................................................................................... 9
+
+1.2.
+
+The Solution ............................................................................................................. 10
+
+1.3.
+
+Product ..................................................................................................................... 11
+
+1.3.1.
+
+Product Vision ................................................................................................. 11
+
+1.3.2.
+
+Product Roadmap ............................................................................................. 12
+
+1.3.3.
+
+Objectives ........................................................................................................ 12
+
+1.3.4.
+
+Scope ................................................................................................................ 16
+
+1.3.5.
+
+Hardware/Software Tools and Cost ................................................................. 17
+
+1.4.
+
+Scrum Team ............................................................................................................. 19
+
+1.4.1.
+1.4.1.1.
+1.4.2.
+2.
+
+Skill Set Requirements ..................................................................................... 19
+Learning ....................................................................................................... 20
+Roles and Responsibilities ............................................................................... 21
+
+Background .................................................................................................................... 23
+2.1 Career Advising ............................................................................................................. 24
+2.1.1 Career Advising Definition and Significance ......................................................... 24
+2.1.2 Types of Career Advising and Challenges in Career Advising .............................. 25
+2.1.3 The Role of Mentors and Mentees in Career Advising .......................................... 27
+2.1.4 The Role of Technology in Career Advising .......................................................... 27
+2.2 Chatbots: An overview .................................................................................................. 28
+2.2.1 OpenAI Chatbots .................................................................................................... 30
+2.3 Recommendation systems .............................................................................................. 32
+2.3.1 How Do Recommendation Systems Work ............................................................. 33
+2.3.2 Types of Recommendation Systems ....................................................................... 33
+2.3.3 Applications of Recommendation Systems ............................................................ 33
+2.3.4 The Tech Behind Recommendation Systems ......................................................... 34
+
+3.
+
+Literature Review .......................................................................................................... 38
+3.1 ASPIRA Competitive product analysis ......................................................................... 38
+
+4.
+
+System Description......................................................................................................... 48
+4.1 Users .............................................................................................................................. 48
+4.2
+
+Requirements Elicitation .......................................................................................... 49
+
+4.3
+
+User Interactions ...................................................................................................... 52
+
+4.3.1 Use Case Diagram................................................................................................... 52
+4.4
+5.
+
+Product Backlog ....................................................................................................... 53
+
+System Design ................................................................................................................. 71
+3
+
+5.1
+
+Architecture.............................................................................................................. 71
+
+5.2 Class Diagram /DFD ...................................................................................................... 73
+5.3 Component Level Design .............................................................................................. 74
+5.3.1 Rate mentors Pseudocode ....................................................................................... 75
+5.3.2 Add Private session Flowchart................................................................................ 77
+5.3.3 Search mentors Flowchart....................................................................................... 78
+5.4 Data Design .................................................................................................................... 79
+5.4.1 Data Models ............................................................................................................ 79
+5.4.1.1 EER Diagram .................................................................................................... 79
+5.4.1.2 Relational Schema ............................................................................................ 80
+5.4.1.3 Data Dictionary ................................................................................................. 82
+5.5 Interface Design ............................................................................................................. 90
+5.5.1 Sitemap ................................................................................................................... 90
+5.5.2 UX guidelines ......................................................................................................... 90
+6.
+
+System Implementation ................................................................................................. 97
+6.1 Implementation Key Steps ............................................................................................. 97
+6.2 Major Parts of ASPIRA Code ........................................................................................ 98
+6.2.1 Add Session Function ............................................................................................. 98
+6.2.2 Book Session Function ......................................................................................... 101
+6.2.3 ZEGOCLOUD API ............................................................................................... 104
+6.2.4 Join Session Function ........................................................................................... 109
+6.2.5 PHPMailer library ................................................................................................. 111
+6.3 Implementation Challenges ......................................................................................... 112
+
+7.
+
+System Testing.............................................................................................................. 115
+7.1 User Acceptance Testing ............................................................................................. 115
+7.1.1 Demographics of Participants ............................................................................... 116
+7.1.2 Questionnaire/Interview Results ........................................................................... 117
+7.2 Discussion .................................................................................................................... 124
+
+8.
+
+Conclusions and Future Work .................................................................................... 127
+8.1 Global and local impact ............................................................................................... 127
+8.2 Problems and challenges encountered during the software development ................... 128
+8.3 Limitations of the system ............................................................................................. 129
+8.4 The main contribution of the project ........................................................................... 130
+8.5 Future work .................................................................................................................. 131
+
+9.
+
+References ..................................................................................................................... 134
+4
+
+10. Appendix A : interviews ................................................................................................. 138
+11. Appendix B : questionnaire ............................................................................................. 143
+12. Appendix C : UAT questionnaire (Mentors and Mentees) .............................................. 148
+13. Appendix D : UAT questionnaire (Admin) .................................................................... 149
+
+Table of figures
+Figure 1 Product Roadmap ...................................................................................................... 12
+Figure 2 HDRF interface ........................................................................................................ 39
+Figure 3 MentorCity interface ................................................................................................. 40
+Figure 4 Graduway interface ................................................................................................... 41
+Figure 5 LinkedIn Learning interface ...................................................................................... 42
+Figure 6 Qooper interface ........................................................................................................ 43
+Figure 7 MentorcliQ interface ................................................................................................. 44
+Figure 8 Use Case Diagram ..................................................................................................... 52
+Figure 9 Client-Server architecture .......................................................................................... 72
+Figure 10 The ASPIRA Platform Class Diagram .................................................................... 74
+Figure 11 Add Private session Flowchart ................................................................................ 77
+Figure 12 Saerch mentors Flowchart ....................................................................................... 78
+Figure 13 EER.......................................................................................................................... 79
+Figure 14 sitemap ..................................................................................................................... 90
+Figure 15 Error Prevention ...................................................................................................... 91
+Figure 16 Design Dialog to Yield Closure .............................................................................. 92
+Figure 17 Informative Feedback .............................................................................................. 93
+Figure 18 Striving for Consistency .......................................................................................... 94
+Figure 19 Reducing Short-Term Memory Load ...................................................................... 95
+Figure 20 check login............................................................................................................... 99
+Figure 21 check conflict the time........................................................................................... 100
+Figure 22 php insert the session ............................................................................................. 100
+Figure 23 html insert the session ........................................................................................... 101
+Figure 24 SQL query that joins the mentors, users, and field................................................ 101
+Figure 25 Retrieve reserved sessions ..................................................................................... 102
+5
+
+Figure 26 Javascript Retrieve reserved sessions ................................................................... 102
+Figure 27 script for book session ........................................................................................... 103
+Figure 28 Javascript to show pop-window ............................................................................ 103
+Figure 29 book_sessions.php ................................................................................................ 104
+Figure 30 retrieve Room ID ................................................................................................... 105
+Figure 31 sets the timezone.................................................................................................... 105
+Figure 32 Extracting the Room ID from the URL ................................................................. 106
+Figure 33 Generating ZEGOCLOUD Access Token ............................................................ 106
+Figure 34 Joining the Room and Configuring the Call Interface........................................... 108
+Figure 35 Time Remaining .................................................................................................... 109
+Figure 36 SQL query retrieves session .................................................................................. 109
+Figure 37 The conditions in join ............................................................................................ 110
+Figure 38 end session ............................................................................................................. 111
+
+Table of tables
+Table 1 Hardware/Software Tools and Cost table .................................................................. 17
+Table 2 Skill Set Requirements table ....................................................................................... 19
+Table 3 Roles and Responsibilities table ................................................................................. 21
+Table 4 Comparison table between systems ............................................................................ 45
+Table 5 Product Backlog .......................................................................................................... 53
+Table 6 Data Dictionary of Entities ......................................................................................... 82
+Table 7 Data Dictionary of Relationships ................................................................................ 84
+Table 8 Data Dictionary of Attributes ..................................................................................... 85
+Table 9 Demographic Of participant……………..…………………………………………117
+Table 10 UAT Questionnaire results (Mentors, Mentees)………………………………….118
+Table 11 UAT Questionnaire results (Admin)…………………………………………...…122
+Table 12 Interview with mentor[1]…………………………………………………………138
+Table 13 Interview with mentor[2]…………………………………………………………139
+Table 14 Interview with mentor[3]………………….………………………..…………….141
+
+6
+
+chapter 1:
+Introduction
+
+7
+
+1. Introduction
+The transition from education to professional life is a crucial phase that defines an
+individual’s career path. In Saudi Arabia, this challenge has become a key focus as the country
+works towards Vision 2030, emphasizing the empowerment of youth by bridging the gap
+between academic education and professional development. However, many students and
+graduates face challenges during this transition due to the lack of personalized career guidance
+and targeted skill-building opportunities.
+This project addresses the issue of insufficient mentorship and career guidance available to
+students and graduates. Without proper support, many struggle to enter the workforce with
+confidence, leading to a skills gap that impacts their ability to effectively participate in the job
+market.
+To tackle this, we propose the development of a web-based platform called ASPIRA,
+designed to provide personalized mentorship and career development support through
+technology. By leveraging artificial intelligence, the platform aims to enhance accessibility and
+offer tailored guidance through features such as AI-powered chatbot, recommendation system,
+and a unified hub connecting mentees with professional mentors. This platform aims to equip
+students and graduates with the skills, confidence, and direction they need to succeed in their
+careers.
+This document will provide a detailed description of the problem being addressed, outline
+the proposed solution, and include details about the technologies used, methodologies adopted,
+and expected outcomes of the project, aligning the initiative with the objectives of our Vision.
+
+8
+
+1.1.
+
+The Problem
+
+In Saudi Arabia, a significant real-world problem persists: many mentees, particularly
+bachelor’s students and recent graduates, struggle to transition effectively from education to
+the workforce. This challenge is particularly critical because it affects their ability to contribute
+meaningfully to the country's growth and long-term objectives.
+For example, consider a university graduate who, despite excelling academically, finds it
+difficult to identify the right career path or acquire the skills needed for specific roles in the
+competitive job market. The lack of accessible and personalized career guidance often leaves
+individuals like this graduate unprepared to navigate the complexities of professional
+development.
+Our project focuses on addressing a critical part of this issue: the absence of tailored
+mentorship and skill-building opportunities. Many mentees lack regular access to professional
+mentors who can provide career advice tailored to their goals and interests. This gap hinders
+their ability to plan effectively for their careers, build confidence, and acquire relevant skills.
+By bridging this gap, we aim to empower youth to achieve their professional potential and
+align with national aspirations for a skilled and competitive workforce.
+
+9
+
+1.2.
+
+The Solution
+
+This project is designed to revolutionize career mentorship by creating a smart, AI-powered
+platform that bridges the gap between mentees and professional mentors. The goal is to provide
+personalized guidance, structured mentorship, and tailored learning resources, helping mentees
+navigate their career paths with confidence. Unlike traditional systems where finding the right
+mentor can be difficult and guidance is often generalized, this platform ensures that mentees
+are matched with mentors who align with their interests, career aspirations, and expertise needs.
+The platform's Mentor Management system, handled by an admin, ensures that only
+qualified and verified mentors are approved, maintaining a high standard of mentorship. To
+make mentorship more accessible and effective, mentees can search for and filter mentors
+based on criteria such as industry and years of experience, ensuring a personalized experience.
+Once connected, mentees can book private one-on-one mentorship sessions or participate in
+interactive group sessions through the Zegocloud API [1], enabling seamless video
+communication for career discussions, skill-building, and guidance. Mentees can reschedule or
+cancel their bookings, while mentors have the ability to adjust or remove sessions as needed.
+To ensure clear communication, mentees will receive a notification whenever a mentor
+reschedules or cancels a booked private session. This keeps them informed about any changes
+and allows them to manage their schedules effectively.To enhance the learning experience,
+each session is documented, with mentors responsible for writing summaries so mentees can
+review key takeaways at any time.
+Beyond mentorship sessions, the platform actively supports mentees’ career growth
+through an AI-powered recommendation system that suggests relevant courses based on user
+interests, ensuring they develop skills aligned with their professional goals. Additionally, an
+AI-powered chatbot, integrated using OpenAI’s [2] technology, provides instant assistance
+with platform navigation, session management, and career-related inquiries, ensuring mentees
+always have access to the information they need.
+Mentees and mentors have full control over their profiles, allowing them to update their
+information, as their careers progress. To further support mentees in their professional growth,
+the platform includes a CV Builder, which helps mentees create a professional CV by entering
+
+10
+
+their personal details, education, skills, and work experience. This feature allows mentees to
+generate CV for job applications and networking opportunities.
+By combining AI-driven learning, structured mentorship, real-time interactions, and a
+strong community-driven approach, this platform provides an essential resource for career
+development. It directly supports Vision 2030 by equipping Saudi youth with the skills,
+mentorship, and guidance they need to thrive in a competitive job market. By fostering a culture
+of mentorship, skill-building, and knowledge-sharing, the platform empowers a new generation
+of professionals, contributing to national growth, economic innovation, and workforce
+readiness.
+
+1.3.
+
+Product
+1.3.1.
+
+Product Vision
+
+For mentees who are bachelor’s students and fresh graduates.
+Who need personalized career guidance and skill-building opportunities to transition into the
+workforce.
+The ASPIRA platform is a web-based career development and mentorship platform .
+That provides tailored real-time mentorship.
+Unlike traditional mentorship programs or generic online mentoring platforms.
+Our product uses AI to offer personalized guidance, a dynamic recommendation system for a
+seamless user experience, and AI-powered support, a chatbot to help users achieve their career
+goals.
+
+11
+
+1.3.2.
+
+Product Roadmap
+
+Figure 1 Product Roadmap
+
+1.3.3.
+
+Objectives
+
+Our objective is to develop the "ASPIRA" career guidance platform, designed to bridge the
+gap between mentees and mentors across various fields. This platform will provide several
+key features, including:
+● Product (customer focus-value):
+1. Mentors / Mentee Registration: Enable mentors and mentees to register to
+access the platform's features, with dedicated interfaces for each user type.
+2. User (Mentor/Mentee/Admin) Login: Enable users to log in their accounts
+to access the platform.
+3. Mentor Management: Enable Admin to view and manage the list of all
+registered mentors and approve or reject mentors based on their provided
+qualifications and information.
+4. CV Builder: Mentees can enter their personal details, education, skills and
+work experience to create a professional CV for career growth opportunities.
+
+12
+
+5. Mentors center: A dedicated center displaying mentors profiles with
+information such as their name, photo, experience, availability, and brief
+description, enabling mentees to search mentors.
+6. Mentor Filtering: Enable mentees to filter mentors based on their field of
+expertise, Experience years and ensuring a personalized and efficient search
+experience.
+7. Mentor searching: Enable mentees to search for mentors using specific
+criteria, such as name, to easily find the mentor that they are looking for.
+8. Private Session Booking: Enable mentees to easily book private mentorship
+sessions.
+9. Join private sessions: Utilizes Zegocloud API, that has embedded video call
+functionality, to enable mentees to join live video private sessions.
+10. Group Sessions: to enable mentees to easily book group mentorship sessions.
+11. Join group sessions: Utilize Zegocloud API, to allow mentees to join live
+video calls, for general career guidance and advice, fostering a collaborative
+and inclusive learning environment.
+12. Mentor Rating: Enables mentees to rate their sessions with mentors to
+improve platform reliability.
+13. Past sessions: Contains a list for both mentors and mentees previous sessions,
+including date/time and name. It will also include a session summary for the
+mentees prepared by the mentor, providing a summary of each session,
+making it easy for users to refer back to the main points discussed. Also
+mentees can rate each session, providing feedback on the mentor’s
+performance through a star rating and a comment.
+14. Upcoming session: Keep track of future sessions for both mentors and
+mentees.
+15. Add Sessions: The mentors can add and display sessions available to mentees.
+Mentees can choose and book from this list of available sessions.
+16. Mentee session management: Mentee can reschedule only private sessions to
+a different available time slot or delete the booking of private/group sessions
+if they no longer need the session.
+
+13
+
+17. Mentor session management: Mentor can edit the time of private and group
+sessions or delete scheduled sessions if needed.
+18. courses center: Dedicated center displaying courses information such as their
+name and online link, providing an easy way for mentees to explore available
+learning opportunities.
+19. Mentee Notifications: Mentees will be notified when the mentor reschedules
+or deletes the booked private/group sessions, this ensures they stay informed
+about any changes.
+20. Mentor Notifications: Mentors will be notified when a mentee book or
+reschedules or delete a private session, to keep up with any changes.
+21. Course Recommendations: Implement an AI recommendation system
+specifically designed to suggest relevant course content tailored to user
+interests. The system leverages user input to provide personalized
+recommendations, ensuring users find the most suitable and engaging course
+materials for their needs.
+22. Chat Assistance: Integrate an OpenAI-powered chatbot to assist users with
+platform navigation and career guidance, providing instant support and
+recommendations.
+23. Profile Management: Enable mentors and mentees to edit their profiles.
+24. Intuitive Interface: Ensure a user-friendly experience for seamless
+navigation, session booking, and resource access.
+
+14
+
+● Project (solution focus-plan):
+1. User Research: Conduct surveys and interviews with mentees, and mentors to identify
+challenges and expectations.
+2. Requirement Analysis: Define functional and non-functional requirements to ensure
+user-centric platform features.
+3. Background research and literature review: conduct domain analysis along with a
+comprehensive competitive analysis
+4. System Design: Create architecture and wireframes for an intuitive and interactive
+platform interface.
+5. Data Collection: Prepare mentor profiles, FAQs, and course data for integration.
+6. Feature Development: Build key features, including the chatbot, recommendation
+system, and session booking functionality.
+7. Testing and Feedback: Conduct usability testing, gather user feedback, and refine the
+platform for reliability and ease of use.
+8. Launch and Monitoring: Deploy the platform and monitor performance for
+continuous improvement.
+
+● Learning (student focus):
+By completing the ASPIRA project, we aim to learn new skills that will help us in real-world
+software development, including:
+1. Frontend Development: Design a responsive and user-friendly interface.
+2. Backend Development: Build robust data management and processing
+systems.
+3. Database Management: Design and manage efficient databases to handle user
+profiles, scheduling, and platform data.
+4. AI Integration: Implement content-based recommendation systems and
+chatbot functionality.
+5. System Integration: Connect frontend, backend, and databases for a seamless
+platform experience.
+6. Team Collaboration: Improve teamwork and communication skills.
+
+15
+
+1.3.4.
+
+Scope
+
+ASPIRA is a mentorship platform designed to connect mentees with experienced
+mentors who align with their career goals, interests, and fields of study. It provides a structured
+and interactive environment where mentees can seek guidance, gain industry insights, and
+receive personalized support throughout their professional journey. Unlike traditional
+mentorship programs, ASPIRA leverages technology to ensure accessibility, efficiency, and
+engagement.
+ASPIRA offers private one-on-one mentorship sessions and interactive group sessions,
+allowing mentees to connect with mentors in real-time. Users (mentor and mentees ) can easily
+reschedule or cancel sessions, while the notify mentee feature ensures that mentees receive
+updates when a mentor reschedules or cancels a booked private session. To enhance mentorship
+impact, mentors are responsible to summarize each session, for mentees to revisit for future
+reference. Additionally, mentees can rate mentors after sessions, helping maintain quality
+guidance. Furthermore, ASPIRA is fully accessible across all devices, ensuring seamless
+interaction anytime, anywhere. ASPIRA simplifies mentor discovery through its Mentor
+Center, where mentees can filter mentors by field or search for specific names. Besides the CV
+Builder feature allows mentees to input their details and expertise to create a CV. To enhance
+the user experience, ASPIRA integrates AI-driven features, an OpenAI-powered chatbot that
+provides instant support for navigation, mentorship queries, and career advice. Additionally, a
+Course Center with a recommendation system to suggest relevant learning opportunities based
+on mentees’ interests and career objectives. ASPIRA is a mentorship and career guidance
+platform, not an educational course provider. While it offers intelligent course
+recommendations, it does not handle course registration, enrollment, or payment processing.
+Its primary mission is to foster meaningful mentor-mentee connections, support career growth,
+and provide structured, AI-enhanced guidance.
+
+16
+
+1.3.5.
+
+Hardware/Software Tools and Cost
+Table 1 Hardware/Software Tools and Cost table
+
+Hardware Tools
+
+Name and Description
+
+Cost
+
+Laptop
+
+Every student has their own device.
+
+Software Tools
+
+Name and Description
+
+Cost
+
+MySQL (Database Management) [3]
+
+Free
+
+Visual Studio code is A simple code
+editor that helps with tasks like
+debugging, running jobs, and keeping
+track of different versions of your code
+
+Free
+
+and supports almost every major
+programming language." [4]
+
+17
+
+course provider API a simple service
+
+To be defined
+
+that provides access to a list of courses,
+allowing users to browse and view
+detailed course information effortlessly.
+
+GitHub is a web-based hosting service
+for git repositories. [5]
+
+Free
+
+Jira "It’s the agile project management
+tool that teams use to plan, track, release,
+and support high-quality software with
+
+Free
+
+confidence." [6]
+
+ZeGOcloud API A simple service that
+provides voice, video, and live streaming
+capabilities, allowing users to easily
+
+Depends on the number of calls, one call costs
+$0.99
+
+integrate communication features into
+their websites or applications. [1]
+Open ai API A simple service that
+provides access to advanced AI models,
+allowing users to easily integrate features
+like text generation and conversation into
+
+Pricing depends on subscription and usage. For
+example, ChatGPT 4 costs about $0.0015 per
+1,000 input tokens and $0.002 per 1,000 output
+tokens.
+
+their applications and websites. [2]
+
+18
+
+1.4.
+
+Scrum Team
+1.4.1.
+
+Skill Set Requirements
+Table 2 Skill Set Requirements table
+
+Technical Skill Required
+
+What is the current level of the team
+(beginner-intermediate- advanced) for each
+skill? How will the gap be bridged? (if
+necessary) Learning plan
+
+Programming languages
+
+Intermediate, additional self-learning and
+online courses.
+
+Dealing with APIs
+
+Beginner (We can enhance our API skills by
+reviewing fundamental concepts such as API
+structure from the specification document).
+
+Database Management (MySQL)
+
+Intermediate, Follow online tutorials and build
+database-driven applications
+
+Training the AI models
+
+Beginner (We can strengthen our skills by
+addressing the fundamental concept behind the
+AI model and seeking for small projects).
+
+UI-UX skills
+
+Advanced
+
+19
+
+1.4.1.1.
+
+Learning
+
+In this section, we will discuss how we acquired the necessary knowledge. To build an
+effective ASPIRA, we explored various technologies, methodologies, and best practices
+relevant to career advising, chatbot development, recommendation systems, and video session
+management.
+To build ASPIRA, we learned about career advising by researching different mentorship
+models and best practices.
+For chatbot development, we watched video tutorials on natural language processing
+(NLP). We also explored OpenAI’s chatbot models and read about their ability to provide
+career advice.
+To implement the recommendation system, we followed online tutorials on content-based
+and API integration. We practiced retrieving and structuring data to suggest relevant learning
+resources for mentees.
+Additionally, we explored video sessions that explain details about API to manage user
+interactions within the platform.
+
+20
+
+1.4.2.
+
+Roles and Responsibilities
+Table 3 Roles and Responsibilities table
+
+Scrum Team
+
+Product Owner:
+
+Dr. Arwa Alsultan
+
+Developers:
+
+Aeshah Almuklifi
+Luluh Alyahya
+Shahad Alsalman
+Ghadi Alzahrani
+Noura Alwohaibi
+
+Scrum Master (SM):
+
+Stakeholders:
+
+Dr. Arwa Alsultan
+Examiners and mentees
+
+21
+
+chapter 2:
+Background
+
+22
+
+2. Background
+In this section, we explore career advising and its role in helping individuals make informed
+decisions about their professional paths. Section 2.1 introduces career advising, discussing its
+importance in guiding mentees through career choices, skill development, and job market
+preparation. It also covers different approaches to career advising, including directive,
+assessment-based, and specialized methods, each addressing unique challenges mentees may
+face. Additionally, this section explores the roles of mentors and mentees and the impact of
+structured guidance. It also highlights how technology is revolutionizing career advising,
+making mentorship more accessible and tailored to individual needs.
+Section 2.2 introduces the impact of chatbots in modern mentorship platforms. With AI
+transforming the way we seek advice, chatbots are now capable of providing real-time career
+guidance, answering mentees' questions, and even offering personalized suggestions. We
+specifically look at OpenAI-powered chatbots and how they enhance mentorship by making
+conversations more interactive, informative, and relevant.
+Next, in Section 2.3, we explore how recommendation systems help mentees find the right
+learning opportunities. ASPIRA’s recommendation system is designed to provide highly
+personalized career guidance, ensuring that mentees receive meaningful suggestions tailored
+to their aspirations.
+This background lays the foundation for ASPIRA, a mentorship platform that leverages
+career advising, chatbots, and recommendation systems to create a smarter and more accessible
+mentorship experience. By integrating these technologies, ASPIRA helps mentees make
+confident decisions and take the right steps toward their professional goals.
+
+23
+
+2.1 Career Advising
+Career advice plays a vital role in both personal and professional development, providing
+mentees with the support and guidance they need to navigate their education and career choices.
+It’s a collaborative process where mentors help mentees discover their strengths, set realistic
+goals, and make informed decisions about their future. Through structured guidance, career
+advising enables mentees to explore different career options, assess their abilities, and develop
+the skills necessary to excel in their chosen fields. Career mentors play a crucial role in this
+journey, helping mentees identify their skills and interests to ensure they choose career paths
+that align with their capabilities and aspirations. [7]
+This background discussion will explore the core aspects of career advice, how it helps
+mentees unlock their potential, and its impact on making well-informed career decisions
+throughout their professional journeys.
+
+2.1.1 Career Advising Definition and Significance
+Career advice serves an essential role in helping mentees navigate their professional
+journeys. At its core, career advice is a process of guidance and mentorship aimed at
+empowering mentees to make informed decisions about their future. It encompasses a range of
+activities, from identifying strengths and setting achievable goals to exploring opportunities
+and overcoming challenges.
+The significance of career advice lies in its ability to provide clarity and direction during
+important stages of a person's life. Whether someone is choosing a field of study, entering the
+job market, or considering a career change, sound advice can make all the difference. It helps
+mentees understand their unique skills, interests, and potential while aligning these with market
+demands and opportunities.[8]
+Career advice is a flexible and tailored approach focused on building a strong relationship
+between mentors and mentees.This approach creates a supportive environment where mentees
+can reflect on their aspirations, evaluate their options, and develop strategies for success. By
+offering insights into career trends and industry expectations, mentors help mentees navigate
+the complexities of the job market and align their decisions with long-term goals. [ 9]
+24
+
+In addition to providing guidance, career advice equips mentees with practical tools such as
+crafting resumes, preparing for interviews, exploring career transitions, and understanding
+industry-specific trends. It also delivers actionable strategies to address career-related
+challenges, from managing competition to building professional networks. By combining
+personalized mentorship with practical support, career advice empowers mentees to
+confidently pursue their aspirations in their professional journeys.
+Also career advice fosters personal growth. It helps mentees build confidence, adaptability,
+and problem-solving skills, which are essential in a constantly evolving job market. By offering
+guidance on time management, work-life balance, and professional development, career advice
+ensures that mentees are prepared to face challenges and achieve long-term success.[10]
+
+2.1.2 Types of Career Advising and Challenges in Career Advising
+
+Career advising includes various approaches designed to support mentees at different
+stages of their professional journey. The most common types include directive advising,
+assessment-based advising, and specialized advising, each offering unique methods to guide
+career decision-making with the help of mentors. However, despite the availability of these
+approaches, mentees often encounter significant challenges in navigating their career paths.
+Understanding both the types of career advising and the obstacles mentees face is crucial in
+providing effective guidance and support.
+● Directive Advising:
+Directive advising is a hands-on approach where mentors provide clear, specific guidance
+to help mentees make confident career decisions. Rather than exploring multiple options,
+mentors offer direct solutions and practical strategies for tasks such as choosing between job
+offers, improving resumes, or preparing for interviews. This approach is particularly beneficial
+for mentees who need quick answers or prefer straightforward advice from a mentor. [11]
+However, many mentees face challenges that hinder their career progress, such as uncertainty
+about their career direction and a lack of personalized guidance. Where many struggle to
+identify which career path suits them best, what opportunities align with their skills, or how to
+25
+
+take the next step, leaving them feeling lost. Additionally, generic career advice often fails to
+consider a mentee’s unique strengths, interests, and aspirations, making it difficult to apply
+broad recommendations to their specific situations.[12]
+
+●
+
+Assessment-Based Advising:
+relies on personality tests, aptitude assessments, and skills evaluations to help mentees
+
+understand their strengths and align them with suitable career paths. This data-driven approach
+provides valuable insights into professions that match their abilities and interests, guiding them
+toward informed career decisions.[11] However, mentees often face challenges that complicate
+career planning, such as skills gap issues and the rapidly changing job market. Many job
+seekers, especially graduates, struggle with misalignment between their skills and employer
+expectations, making it difficult to secure job opportunities or advance professionally.
+Additionally, as industries evolve with new technologies and shifting demands, mentees must
+continuously assess their competencies and determine whether further training or education is
+needed to remain competitive.[12]
+● Specialized Career Advising:
+Specialized career advising provides a personalized approach for mentees facing unique
+career challenges. Specialized mentors support students exploring career paths, young
+professionals seeking growth, career changers navigating transitions, and individuals
+overcoming obstacles such as workplace discrimination or skill gaps. By understanding each
+mentee’s specific situation, these mentors offer tailored guidance to help them progress in their
+careers. [11]However, many mentees struggle with self-doubt and fear of failure, especially
+during career transitions and workplace challenges, making it difficult to take proactive steps
+toward their professional goals. Specialized career advising addresses these concerns by
+offering targeted strategies for overcoming workplace obstacles, acquiring new skills, and
+successfully navigating career changes. Through personalized support, mentees gain the
+confidence and resources needed to advance in their careers with clarity and determination.[12]
+
+26
+
+Career advising helps mentees navigate their careers through different approaches, from
+direct guidance to skill assessments and personalized support. Despite these resources,
+challenges like career uncertainty, skill gaps, and self-doubt and fear of failure. By
+understanding these obstacles and tailoring advising methods, mentees can receive the right
+support to make informed decisions and confidently pursue their goals.
+
+2.1.3 The Role of Mentors and Mentees in Career Advising
+Mentors and mentees both have an important role in career advising, creating a relationship
+built on guidance, learning, and professional growth. Mentors use their experience and industry
+knowledge to help mentees navigate career choices, develop skills, and build confidence. They
+offer advice, share real-world insights, and provide support in setting career goals. But a
+mentor’s role isn’t just about giving answers it’s about listening, encouraging mentees to think
+for themselves, and guiding them to make smart career choices.[13]
+At the same time, mentees need to take an active role in their career growth. They should
+seek guidance, ask relevant questions, and use the advice they receive. A good mentoring
+relationship works best when mentees are open to feedback, eager to learn, and take initiative
+in building their careers.[13]
+When both mentors and mentees are actively involved, career advising becomes a valuable
+tool for growth, networking, and long-term success. It’s more than just answering career
+questions—it helps build confidence, open new opportunities, and provide a clear path for the
+future.
+
+2.1.4 The Role of Technology in Career Advising
+Technology has transformed career advising, making it more accessible and efficient than
+ever before. Digital tools now offer real-time guidance, personalized career suggestions, and
+interactive learning, making it easier for mentees to explore career options and build their skills.
+One of the biggest advantages of technology in career advising is its ability to offer
+personalized guidance. AI can analyze a mentee’s skills, interests, and job market trends to
+27
+
+recommend career options that best match their strengths. Online assessment tools, such as
+personality tests and skills evaluations, give mentees a deeper understanding of their abilities,
+helping them make career choices and explore opportunities that align with their goals.
+Technology also plays a crucial role in skill development, making learning more accessible
+and flexible. Online platforms offer a wide range of courses, certifications, and training
+programs that help individuals build the skills needed for career growth. Whether it's enhancing
+technical abilities, staying updated with industry trends, or improving soft skills, these digital
+resources allow mentees to learn and upskill at their own pace. Career advising is no longer
+just about offering guidance it now includes access to tools that actively support skill-building
+and career readiness.[14]
+Another major shift in career advising is how technology has transformed mentorship and
+networking. Virtual platforms now allow mentees to connect with mentors from anywhere,
+giving them access to industry experts and career coaches without geographic limitations.
+Video calls, webinars, and online career communities have made it easier than ever to seek
+guidance and build professional relationships.
+This transformation in technology and career advising inspired us to create ASPIRA. By
+leveraging these advancements, we developed a platform that offers personalized career
+guidance, skill-building opportunities, and direct mentorship connections. ASPIRA provides a
+space where mentees can connect with mentors who can guide them through career challenges
+and opportunities. Our goal is to make career advising more accessible and empowering
+mentees to confidently take the next steps in their professional journey.
+Overall, technology has made career advising easier and more accessible. It helps mentees
+take charge of their careers, get expert advice anytime, and make smart decisions based on realtime job market insights. As technology advances, career advising will become even more
+interactive.
+
+2.2 Chatbots: An overview
+Chatbots have become an integral part of our everyday interactions with technology,
+fundamentally changing how we communicate with systems and access information. These
+28
+
+virtual assistants are designed to simulate human-like conversations, making communication
+feel intuitive and natural. At the core of chatbots lies Natural Language Processing (NLP), a
+branch of artificial intelligence that enables them to understand, process, and respond to human
+language in meaningful ways. Over the years, chatbots have evolved significantly, transitioning
+from basic systems with limited capabilities to advanced tools that can engage in complex,
+context-aware interactions.
+There are three primary types of chatbots, each suited to different needs. First, Rule-Based
+Chatbots operate based on predefined rules or scripts. These are the simplest form of chatbots,
+following decision trees to guide users through fixed workflows. They work well for
+straightforward tasks like answering frequently asked questions or providing basic information
+but struggle when users deviate from their programmed paths. Second, AI-Powered Chatbots
+take things to the next level. These bots use machine learning and natural language
+understanding to interpret user input, learn from interactions, and adapt to context. They are
+capable of dynamic conversations, making them ideal for handling more complex queries,
+providing personalized recommendations, or even assisting with problem-solving. Finally,
+Hybrid Chatbots combine the best of both worlds, using rule-based logic for simple tasks while
+leveraging AI for more intricate or unpredictable scenarios. This balance allows them to handle
+a broader range of interactions while maintaining efficiency.
+Despite their growing capabilities, chatbots come with both strengths and challenges.
+Among their most significant advantages is their ability to provide 24/7 support, ensuring users
+receive help at any time without delays. They also excel at scalability, managing multiple
+conversations simultaneously, which is invaluable for businesses looking to handle high
+volumes of queries. Moreover, their ability to personalize interactions based on user data
+creates a more engaging and relevant experience for individuals. This is particularly useful in
+industries like e-commerce, customer service, and healthcare, where personalization can
+significantly enhance satisfaction and loyalty. Additionally, chatbots can help businesses save
+costs by automating repetitive tasks and reducing the need for human intervention in routine
+inquiries.
+However, like any technology, chatbots are not without their challenges. Rule-based
+chatbots, while efficient for simple tasks, often fail to handle more nuanced or open-ended
+
+29
+
+queries, leading to user frustration. For more advanced, AI-powered chatbots, the development
+process can be highly complex, requiring expertise in artificial intelligence, machine learning,
+and natural language processing. Another significant concern is privacy and data security,
+particularly when chatbots handle sensitive information, such as in healthcare or finance.
+Striking the right balance between personalization and protecting user data is an ongoing
+challenge for developers and businesses alike.
+
+2.2.1 OpenAI Chatbots
+Natural Language Processing (NLP) has transitioned from relying on task-specific
+representations and architectures to adopting task-agnostic pre-training and architectures. This
+shift has significantly advanced various complex NLP tasks, including reading comprehension,
+question answering, and textual entailment. Although the foundational architecture and initial
+representations are now task-agnostic, a final task-specific adaptation step remains necessary.
+This involves fine-tuning the pre-trained model on a large dataset of examples, ensuring it is
+optimized for a specific task. [15]
+One of the standout features of OpenAI chatbots is their versatility. They can handle both
+open-domain and closed-domain queries. For example, they can answer a broad range of
+questions on virtually any topic when used in an open-domain context, similar to ChatGPT. At
+the same time, they can be fine-tuned to operate within a specific domain, like mentoring or
+academic advising, to provide more focused and relevant responses. This flexibility allows
+OpenAI chatbots to be deployed across diverse scenarios, making them suitable for everything
+from casual conversation to specialized applications. Furthermore, their ability to continuously
+learn and improve ensures that they remain relevant and effective over time, adapting to new
+information and user needs with ease. When designing ASPIRA, our goal was to create a
+mentorship platform that not only connected mentees and mentors but also offered intelligent,
+meaningful, and personalized support throughout the mentorship journey. To achieve this, we
+needed a chatbot solution that could match the vision and complexity of our platform. After
+evaluating several options, OpenAI’s chatbot technology emerged as the most fitting choice
+for ASPIRA’s needs.
+GPT-4, short for Generative Pre-trained Transformer 4, is OpenAI’s most advanced AI
+language model. It’s designed to understand and generate human-like text with remarkable
+30
+
+accuracy, making it one of the most powerful tools for natural language processing. Compared
+to its predecessor, GPT-3.5, this model shows major improvements in reasoning, contextual
+understanding, and overall performance.
+To put its capabilities to the test, GPT-4 was evaluated on a range of exams originally
+designed for humans—and the results were impressive. For instance, in a simulated bar exam,
+GPT-4 ranked in the top 10% of test takers, while GPT-3.5 placed in the bottom 10%. This
+leap in performance highlights the model’s enhanced ability to handle complex reasoning and
+problem-solving tasks.
+Beyond standardized tests, GPT-4 also outperformed previous AI models on key natural
+language processing (NLP) benchmarks. On the Massive Multitask Language Understanding
+(MMLU) test, which covers 57 subjects, it surpassed all prior models by a significant margin.
+Even when the test was translated into 26 different languages, GPT-4 outperformed the best
+English-language AI models in 24 of them, showing its strong multilingual capabilities.
+What makes GPT-4 even more impressive is that it doesn’t rely on benchmark-specific
+training or manual optimizations like many other state-of-the-art systems. It’s simply better at
+understanding context, making connections, and generating relevant responses. Additionally,
+OpenAI has improved its safety measures, making the model more reliable and aligned with
+human intent.
+In short, GPT-4 isn’t just another AI upgrade—it’s a major step forward in how machines
+understand and communicate with humans.[16]
+One of the primary reasons we chose OpenAI’s chatbot is its advanced natural language
+understanding. Mentorship often involves nuanced conversations about career planning, skill
+development, and personal growth. OpenAI’s chatbot is equipped to handle such discussions
+with sensitivity and precision, ensuring that mentees and mentors feel heard and understood.
+Its ability to provide thoughtful, context-aware responses makes it an ideal companion for users
+seeking guidance, whether they need help setting goals, navigating challenges, or exploring
+new opportunities.
+Additionally, OpenAI’s technology is highly adaptable, allowing us to train the chatbot
+specifically for the mentorship domain. Unlike generic chatbots, ASPIRA’s chatbot is fine31
+
+tuned to address mentorship-specific queries, making it a valuable resource for mentees and
+mentors alike. For instance, if a mentee is unsure about which skills to develop for a particular
+career path, the chatbot can provide tailored advice based on industry trends and best practices.
+This domain-specific focus ensures that the chatbot adds meaningful value to the mentorship
+experience, acting as a reliable and knowledgeable assistant.
+Another key factor in choosing OpenAI was its scalability and continuous improvement
+capabilities. As ASPIRA grows and evolves, so too can the chatbot. It can be updated with new
+data, insights, and features to stay aligned with the changing needs of our users. This means
+that the chatbot will not only remain relevant but will also improve over time, delivering an
+increasingly refined user experience.
+Finally, OpenAI’s track record of innovation and reliability gave us confidence that their
+chatbot technology would meet the high standards we envisioned for ASPIRA. By integrating
+OpenAI’s chatbot, we have created a platform that goes beyond simply facilitating mentorship
+connections—it empowers users by providing intelligent, responsive, and personalized
+support. This decision reflects our commitment to leveraging cutting-edge technology to
+enhance the mentorship experience, ensuring that ASPIRA remains a trusted and
+transformative tool for personal and professional growth.
+
+2.3 Recommendation systems
+In today’s world, where we are bombarded with endless choices—be it movies, courses, job
+listings, or products—recommendation systems have become essential. These smart systems
+help users find what they need by analyzing their preferences, behaviors, and past interactions.
+Whether it’s Netflix suggesting your next binge-worthy show, an online learning platform
+recommending courses that match your career goals, or an e-commerce site curating a shopping
+list just for you, recommendation systems are shaping the way we interact with digital content.
+
+32
+
+2.3.1 How Do Recommendation Systems Work
+At their core, recommendation systems use machine learning and statistical analysis to
+predict what a user might like based on various factors. They act like digital assistants, learning
+from your interactions to make increasingly accurate suggestions over time. The goal is to cut
+through the noise and present options that are truly relevant to you. [17]
+
+2.3.2 Types of Recommendation Systems
+Recommendation systems can be categorized into different types based on their underlying
+methodologies. Content-based filtering systems analyze item attributes and user preferences to
+suggest similar content, making them suitable for applications like movie recommendations.
+Collaborative filtering, on the other hand, relies on user behavior patterns, identifying groups
+with similar interests to generate suggestions. Hybrid systems integrate multiple approaches to
+enhance recommendation accuracy, often combining content-based and collaborative
+techniques. Finally, knowledge-based systems use predefined rules and expert knowledge to
+recommend items that match specific user needs, making them particularly effective in
+domains like job matching and personalized services. [18]
+
+2.3.3 Applications of Recommendation Systems
+Without recommendation systems, navigating the overwhelming number of choices
+available online would be exhausting. These systems make life easier by providing
+personalized experiences across different platforms:
+● Streaming Services (like YouTube): They analyze your watching or listening habits to
+suggest content you’ll likely enjoy.
+● E-Commerce (Amazon, eBay): They track your browsing and purchasing history to
+recommend products that match your interests.
+● Online Learning (Coursera, Udacity, edX): They suggest courses based on your skills,
+career goals, and past learning history.
+● Job Portals (like LinkedIn): They match job seekers with relevant job listings based
+on their resumes, searches, and application history.
+
+33
+
+2.3.4 The Tech Behind Recommendation Systems
+Recommendation systems use a combination of machine learning techniques to provide
+accurate suggestions tailored to users' preferences and needs. One key method is Natural
+Language Processing (NLP), which enables systems to analyze and interpret text-based data,
+such as course descriptions, job postings, and movie summaries, to make meaningful
+recommendations. Another important technique is TF-IDF (Term Frequency-Inverse
+Document Frequency), a mathematical approach that assesses the significance of words within
+a document. For example, in job recommendation systems, TF-IDF helps match keywords
+from a user's resume with those found in job descriptions, improving relevance. Additionally,
+Cosine Similarity plays a crucial role by measuring the similarity between two documents or
+sets of information. This technique is often used to compare a user's past interactions with new
+content, ensuring that recommendations align with their preferences. When combined, these
+techniques enhance the precision of recommendation systems by analyzing patterns and
+relationships within data.
+With the rapid growth of digital information, users often face information overload, making
+it challenging to filter relevant content, particularly in news portals where articles are published
+massively. Readers need time to search for and read news, but the time relevance of articles
+diminishes quickly. To address this, recommendation systems play a crucial role in delivering
+personalized content efficiently. A notable study implemented a news recommendation system
+using the TF-IDF method, which assigns weights to each word in the news title and then applies
+cosine similarity to find similarities between stories. To evaluate the system’s effectiveness,
+the researchers compared the recommended articles with readers' actual news history on the
+Microsoft News portal using a hit-rate metric, achieving an accuracy of 80.77%, indicating the
+strong relevance of the system's recommendations.
+This demonstrates how TF-IDF and Cosine Similarity are effective in various domains,
+from job matching to personalized news recommendations, enhancing user experience by
+delivering highly relevant content.[19]
+Recommendation systems offer significant business benefits by leveraging data filtering
+tools to drive revenue growth, enabling cross-selling and upselling through personalized
+recommendations. By presenting relevant suggestions, customers are more likely to discover
+34
+
+and purchase additional products, leading to increased sales. Additionally, these systems
+enhance customer satisfaction by tailoring recommendations to user preferences, making the
+platform feel more responsive and engaging, which fosters retention and a positive user
+experience. With personalization at scale, recommendation engines analyze customer data to
+create individualized profiles, increasing conversion rates by curating products specifically
+suited to each user. Furthermore, these systems generate informative reports that provide
+insights into customer behavior, preferences, and trends, allowing businesses to make datadriven decisions for continuous growth. They also reduce workload by automating
+recommendations, freeing employees from manually curating suggestions and enabling them
+to focus on other strategic tasks. Lastly, controlled retailing helps businesses showcase new or
+underexposed products, manage inventory effectively, and strategically influence purchasing
+behavior, ultimately driving targeted sales and optimizing retail performance.[20]
+
+recommendation systems face several key challenges. One major challenge is fostering
+communities of interest while ensuring user privacy is respected. Balancing personalization
+with data protection remains a crucial concern. Another significant challenge is developing
+recommendation algorithms capable of integrating multiple data sources collected at different
+times. For newly registered users, personal information can be gathered during registration,
+while contextual data such as location and time can be inferred from their IP address.
+Additionally, recommendations are often influenced by items that have been frequently
+viewed, downloaded, or purchased by others, further shaping the system’s ability to deliver
+relevant suggestions.[21]
+While recommendation systems have significantly enhanced content discovery, they still
+face notable challenges. One major issue is the cold start problem, where new users or items
+lack sufficient interaction history, making accurate recommendations difficult. Additionally,
+data bias can arise if the training data is skewed, leading to recommendations that
+disproportionately favor certain types of content. Another challenge is over-personalization,
+where users are repeatedly shown content similar to their past interactions, limiting exposure
+to diverse recommendations and potentially reinforcing filter bubbles.
+
+35
+
+At ASPIRA, we’ve implemented a content-based recommendation system designed to
+guide mentees toward courses that align closely with their skills, interests, and career
+aspirations. By analyzing each mentee’s unique data—such as their goals, expertise, and past
+interactions—the system delivers highly relevant recommendations, such as prioritizing data
+analytics courses for mentees interested in that field. What sets this system apart is its
+adaptability; it evolves with the mentee by factoring in feedback and progress, ensuring
+recommendations remain precise and aligned with their growth. This personalized and
+evolving approach empowers mentees to achieve their professional goals while demonstrating
+ASPIRA’s commitment to leveraging intelligent technology for impactful mentorship.
+At the end of the day, recommendation systems are more than just algorithms—they’re the
+invisible hands shaping our digital experiences. As they continue to evolve, they’ll become
+even better at delivering what we need, sometimes even before we realize we need it.
+
+36
+
+chapter 3:
+Literature
+review
+
+37
+
+3.
+
+Literature Review
+The development of ASPIRA as a mentorship platform required performing a market
+analysis of existing mentorship and career development services. This review establishes
+framework strengths and weaknesses together with proposed areas of uniqueness for
+ASPIRA through its mentorship service and career development offerings. The analysis
+of current solutions compared with ASPIRA helps the team create an improved mentorship
+environment that produces tailored user experiences.
+
+3.1 ASPIRA Competitive product analysis
+1. HRDF Recruitment Services (Saudi Human Resource Development Fund)
+The main priority of the HRDF program stems from government support to provide Saudi
+job seekers assistance from their academic phase until they secure employment. The
+organization provides Saudi Arabian job seekers with employment service along with
+vocational guidance and supports services and training services that align with the local
+employment market requirement.[22]
+Features:
+● Saudi job seekers benefit from recruitment programs "Tawfeer" and "Hadaf" because
+they match qualified candidates with suitable positions through these initiatives.
+● The institution gives specialized assistance to students moving from studying to starting
+their professional careers.
+● Workforce development materials match Saudi needs of the Saudi job market.
+Limitations:
+●
+
+The service lacks both academic counseling and specific academic goal guidance for
+young learners.
+
+●
+
+The institution needs to enhance its student mentoring services by developing
+individualized development plans and personalized student support systems.
+38
+
+●
+
+The organization concentrates on matching candidates with employment opportunities
+but provides few supplementary career development services beyond basic placement
+services.
+
+Figure 2 HDRF interface
+
+2. MentorCity
+The internet platform MentorCity helps students and working professionals search for
+mentors through their interests and educational goals and professional areas. The platform
+demonstrates both mentor-mentee relationship architecture and shows methods to set targets
+and check advancement levels.[23]
+Features:
+● Both mentor and mentee can find each other through this system based on matching
+their specific personal interests and career goals.
+● Goal-setting features and tools for tracking progress.
+● Flexible mentor-mentee matching system.
+Limitations:
+●
+
+Academic advising together with career services are not available through this system.
+
+●
+
+Emphasis on professional mentorship, lacking comprehensive career development
+tools.
+39
+
+Figure 3 MentorCity interface
+
+3. Alumni Networks (e.g., AlumniFire, Graduway)
+The platforms AlumniFire together with Graduway offer networking functions between
+alumni members while simultaneously providing student-to-student interaction regarding
+mentorship and career advice connections. [24]
+Features:
+● The platform provides students the chance to network and seek advice from their
+university alumni.
+● Career guidance from experienced professionals.
+● Users create connections through their mutual employment fields and similar career
+paths as well as common work history.
+Limitations:
+● Primarily focused on alumni-student interactions.
+● The service does not assist with education counseling or employment placement
+assistance.
+● The platform does not offer custom-made suggestions for career guidance.
+40
+
+Figure 4 Graduway interface
+
+4. LinkedIn Learning
+A modern learning platform uses personal profile data for suggesting various courses to
+users. [25]
+Features:
+● Users benefit from extensive professional development material that is available for
+learning.
+● Individual course suggestions exist for users whose profiles match their objectives.
+● Users can integrate their LinkedIn profiles which shows their skills as well as displayed
+certifications.
+Limitations:
+● The program does not supply mentoring services or academic advising to its members.
+
+41
+
+● The platform provides skill training opportunities instead of employment support and
+career development coverage.
+
+Figure 5 LinkedIn Learning interface
+
+5. Qooper
+Qooper serves as a platform which helps people find mentors through structured
+mentorship
+
+programs
+
+supported
+
+by
+
+automation
+
+and
+
+artificial
+
+intelligence
+
+recommendations.[26]
+Features:
+● AI-powered mentor-mentee matching.
+● Local institutions exist which provide mentorship programs with automated goal
+tracking capabilities.
+● The system includes automated warning features together with systems to monitor
+development progress.
+● Integration with career development resources.
+
+42
+
+Limitations:
+● This platform delivers corporate mentoring programs instead of academic counseling
+guidance.
+● The system shows restrictions when students require individualized academic and
+career guidance.
+
+Figure 6 Qooper interface
+
+6. MentorcliQ
+Through automation MentorcliQ operates as a corporate mentoring platform that creates
+analytics reports and runs business mentoring programs. [27]
+Features:
+● AI-driven mentor matching.
+● Customizable mentorship programs for organizations.
+● Performance tracking and analytics for mentorship progress.
+● Seamless integration with Learning Management Systems (LMS).
+43
+
+Limitations:
+● The platform provides corporate mentoring services but has limited activity in student
+mentorship activities.
+● Lacks academic guidance and career planning tools.
+
+Figure 7 MentorcliQ interface
+
+44
+
+Table 4 Comparison table between systems
+
+Features
+
+Type of
+the system
+
+HRDF
+
+website
+
+MentorCity
+
+Graduway
+
+LinkedIn
+Learning
+
+website and
+
+website and
+
+website and
+
+mobile app
+
+mobile app
+
+mobile app
+
+Qooper
+
+MentorcliQ ASPIRA
+
+website
+
+website
+
+website
+
+AI chatbot
+
+Course
+Recomme
+ndations
+Group
+session
+booking
+Access to
+learning
+resources
+Private
+Session
+Booking
+View
+Session
+History
+CV
+builder
+Courses
+center
+
+For free
+
+45
+
+The assessment of competitive products examines current mentorship and career
+development platforms to reveal opportunities for ASPIRA’s growth. The research team
+analyzed HRDF together with MentorCity and Alumni Networks and LinkedIn Learning and
+Qooper and MentorcliQ to identify their functionalities and weaknesses.
+The main goal of HRDF involves finding employment opportunities while it does not assist
+students with educational mentoring. MentorCity allows mentors and mentees to find each
+other while offering goal-management capabilities beyond career mentoring support. The
+networking platform Alumni Networks enables university graduates to communicate yet does
+not provide either career guidance or job placement assistance. LinkedIn Learning offers
+customized learning material suggestions but fails to provide mentorship support and career
+development assistance.
+Qooper and MentorcliQ implement AI to match mentoring relationships yet their main user
+base consists of corporate mentoring. ASPIRA stands out through its implementation of
+artificial intelligence mentor matching services which pairs with individualized professional
+development resources and academic counseling and specific functions to recommend courses
+and construct CV builder as well as provide free mentoring materials.
+A comparison sheet demonstrates that ASPIRA outperforms its competitors by offering an
+all-encompassing system for AI-powered mentorship with career development tools and
+academic support offerings.
+
+46
+
+chapter 4:
+System
+description
+
+47
+
+4.
+
+System Description
+This section outlines the methods used to gather and analyze requirements, including user
+interviews and questionnaires. These activities were designed to capture both functional and
+non-functional requirements, enabling us to create a solution that aligns closely with the
+objectives. It also provides an overview of the system's architecture, key users, and a use case
+diagram to illustrate interactions between users and the system.
+
+4.1 Users
+Mentees: University students or recent graduates seeking career guidance to determine their
+career paths and acquire the necessary skills, through mentoring.
+Educational level: University students or recent graduates with a bachelor's degree.
+Experience: Limited or no professional experience, may lack direct practical experience in the
+job market.
+Technical expertise: Basic to intermediate technical skills, beneficiaries are expected to be
+familiar with using electronic platforms.
+Mentors: Mentors are professionals with extensive experience in their fields of work,
+providing support and guidance to mentees, their primary role is to share their practical
+experiences to guide mentees towards achieving their career goals.
+Educational level: Professionals with advanced degrees or significant experience in their
+specialized fields.
+Experience: Experienced individuals with years of practical knowledge in specific industries
+or fields.
+Technical expertise: Intermediate to advanced technical skills, mentors must be able to use
+platforms to manage their profiles, interact with mentees, and deliver mentoring sessions.
+
+48
+
+Admin: are responsible for reviewing mentors registration requests and either approving or
+rejecting them based on the mentor's submitted CV. Their primary role is to ensure that
+qualified mentors join the platform to provide high-quality guidance to mentees.
+Educational level: Individuals with a solid educational background, typically holding a
+bachelor's degree or higher, preferably in fields related to management, HR, or administration.
+Experience: Experience in administrative or decision-making roles, with the ability to assess
+qualifications and professional resumes.
+Technical expertise: Intermediate to advanced technical skills, including familiarity with
+electronic platforms, and the ability to navigate the system for reviewing and processing mentor
+applications.
+
+4.2
+
+Requirements Elicitation
+
+We collected extensive information from various sources. Using both questionnaire and
+interviews with students (undergraduate, fresh graduate) and mentors, we identified the key
+requirements and organized them by priority to ensure the implementation of the most essential
+features first.
+A total of 50 responses were received from the questionnaire (Appendix B). The
+questionnaire has different questions, and the participants comprised 94% undergraduate
+students, 4% experienced professionals, and 2% fresh graduates(within the last 2 years).
+The questionnaire focused on understanding the challenges students and fresh graduates face
+that led them to need guidance and their preferences for mentoring and other features. When
+we asked about the biggest challenges in career decision-making, 58% reported a lack of
+guidance, while 38% struggled to identify jobs matching their skills. Regarding their preferred
+way of receiving career guidance, 60% choose a mix of all mentoring options, while 34%
+choose one-to-one personalized mentoring. To accommodate these preferences, we ensured
+that our platform offers various flexible mentoring options which are group and private
+mentoring. Additionally, 52% of responders preferred virtual meetings, exceeding the
+49
+
+percentage of those who preferred in-person mentoring, highlighting a strong demand for
+flexible and remote mentoring options, which is a key pillar of our platform. Participants
+expressed interest in a recommendation system tailored to their career goals, with 64% strongly
+supporting the idea. To meet this demand, ASPIRA has integrated a recommendation system
+that suggests relevant courses based on user interests.
+We also asked about other provided features like having an AI-powered chatbot answering
+their queries, most of the answers were very interested in this feature. and rating mentors
+feature with responses of 64% strongly agreed. In addition to the history of previous sessions
+feature, 74% saw it extremely useful as a reference. Based on these insights, ASPIRA has
+incorporated these features into the platform. These additions enhance the overall mentoring
+experience by providing structured support, accountability, and continuous learning
+opportunities.
+We also asked about mentoring topics they consider most important, and what would catch
+their attention in the mentor’s profile. Reflecting the responses, ASPIRA will ensure that
+mentor profiles clearly display key details, making it easier for mentees to find the right mentor.
+
+For the interviews(Appendix A), we engaged with three mentors to gain deeper insights
+into their needs and preferences. We asked them multiple questions, such as their major and
+inspiration, what strategies they use with Mentos. One of the key questions explored the
+potential of offering flexible communication methods, such as video calls, in the mentoring
+process. All mentors interviewees agreed that this feature would significantly enhance the
+effectiveness of mentoring and make the process more interactive. Another key question asked
+about the most challenging aspects of communication with mentees. Ghala Alharbi noted, “The
+most challenging part is understanding what mentees really need, especially when they text me
+at an unsuitable time and seem angry". Similarly, Shaden Alshehri stated, “For me, the hardest
+part is when mentees don’t communicate regularly or delay responses". Haifa Alsaif added
+about mentees not being clear and struggling to explain their challenges. These responses
+highlight that communication is a common challenge for mentors, with issues ranging from
+clarity and timeliness.
+50
+
+Another question focused on how technology could improve the mentoring process. The
+mentors highlighted various benefits of incorporating technology into mentoring. Ghala
+Alharbi noted that “technology makes mentoring easier by helping me stay organized and share
+resources quickly. It also simplifies connecting and communicating anytime". while Shaden
+Alshehri said Technology is "allowing mentors and mentees to collaborate easily, even if
+they’re in different locations.” Lastly Haifa Alsaif answered “technology simplifies mentoring
+by assisting with tasks like scheduling meetings and staying in touch. It speeds up
+communication and keeps everything organized and straightforward.”.
+Based on the information gathered, it is evident that the users strongly align with the
+planned features, particularly the recommendation system and the flexible communication
+methods. The feedback demonstrates the importance of prioritizing tools that enhance
+communication and mentoring effectiveness. These findings reaffirm the need for a
+comprehensive platform that bridges gaps in communication, and provides robust support for
+professional development.
+
+51
+
+4.3
+
+User Interactions
+
+4.3.1 Use Case Diagram
+
+Figure 8 Use Case Diagram
+
+52
+
+4.4
+
+Product Backlog
+Table 5 Product Backlog
+
+ID
+
+PBIs (User Stories)
+
+Size
+
+1
+
+As an unregistered user ( mentee), 3
+
+Type
+
+Status
+
+Feature
+
+Done
+
+Acceptance Criteria
+
+● As an unregistered user(
+
+I want to sign up so that I can
+
+mentee), if I fill in the
+
+create an account and access the
+
+required fields correctly,
+
+website features.
+
+then I should successfully
+create an account.
+● As an unregistered user (
+mentee), if I leave any
+required field empty, then
+an error message should
+prompt me to complete
+the required fields.
+● As an unregistered user (
+mentee), if I try to sign up
+with an email and phone
+number that is already
+registered, then an error
+message should indicate
+that the email is already in
+use.
+
+2
+
+As an unregistered user ( mentor), 3
+
+Feature
+
+Done
+
+● As an unregistered user(
+
+I want to sign up so that I can
+
+mentor), if I fill in the
+
+create an account and access the
+
+required fields correctly,
+
+website features.
+
+then I should wait for the
+admin to accept me.
+
+53
+
+● As an unregistered user (
+mentor), if I leave any
+required field empty, then
+an error message should
+prompt me to complete
+the required fields.
+● As an unregistered user (
+mentor), if I try to sign up
+with an email that is
+already registered, then an
+error message should
+indicate that the email is
+already in use.
+3
+
+As a registered user (mentor,
+
+5
+
+Feature
+
+Done
+
+● As a registered user, if I
+
+mentee, admin), I want to login so
+
+wanted to use the website
+
+that I can use website features.
+
+features, then I should
+login using the correct
+email and password.
+● As a registered user, if I
+wanted to use the website
+features, then if I tried to
+login with incorrect email
+and/or password an error
+message should appear
+
+4
+
+As a user (mentor , mentee), I
+
+2
+
+Feature
+
+Done
+
+● As a user, if I am on the
+
+want to be able to reset my
+
+login page and click
+
+password so that I can regain
+
+"Forgot Password", then
+
+access to my account if I forget it.
+
+the system should send a
+password reset email.
+● As a user ,if I follow the
+reset link and enter a new
+password, Then the
+54
+
+system should confirm
+that my password has
+been successfully reset
+and update it in the
+database.
+5
+
+As a logged in user (mentor,
+
+1
+
+Feature
+
+Done
+
+•
+
+As a logged-in user, if I
+
+mentee, admin), I want to log out
+
+click on the logout
+
+of the website so that I maintain
+
+button, then I will be
+
+better control over my account
+
+directed to the home page.
+
+access.
+6
+
+As an admin, I want to manage
+
+8
+
+Feature
+
+Done
+
+● As an admin, if I log into
+
+the registration of mentors on the
+
+my account,then I should
+
+website by accepting or rejecting
+
+be able to view a list of all
+
+them, so that I can accept mentors
+
+mentor registration
+
+with the necessary skills and
+
+requests through the
+
+experience, and reject those
+
+requests page. For each
+
+whose experience is not suitable
+
+request, I should be able
+
+for mentoring.
+
+to see the required
+information, such as the
+CV, then I can make a
+decision based on their
+information by clicking
+on the accept or reject
+button for the mentor.
+
+7
+
+As a mentee, I want to have a
+
+5
+
+Feature
+
+Done
+
+● As a mentee, if I open the
+
+comprehensive overview of all
+
+mentors center page then
+
+available mentors, including
+
+I can view a list of all
+
+detailed information, so that I can
+
+available mentors, along
+
+make an informed decision when
+
+with detailed information
+
+selecting a mentor.
+
+such as their names,
+photos, and areas of
+experience.
+55
+
+● As a mentee, if I open the
+mentors center page and
+there are no available
+mentors, then I should see
+a message informing me
+that no mentors available.
+8
+
+As a mentee, I want to filter
+
+5
+
+Feature
+
+Done
+
+● As a mentee, if I open the
+
+mentors by field of expertise and
+
+mentors center page and
+
+experience years
+
+see the filter bar on the
+
+so that I can choose the most
+
+left of the screen and
+
+suitable mentor for my specific
+
+choose a field of expertise
+
+needs and queries.
+
+and/or experience years
+then only those mentors
+who specialize in that
+field should appear.
+● As a mentee, if I filter
+mentors by field of
+expertise and/or
+experience years and
+there are no available
+mentors in that field, then
+an empty page should
+appear .
+
+9
+
+As a mentee, I want to search for
+
+8
+
+Feature
+
+Done
+
+● As a mentee, if I open the
+
+mentors by name so that I can
+
+mentors center page, and
+
+quickly find the mentor I am
+
+search for a mentor by
+
+looking for.
+
+specific name, then only
+a mentor with that name
+will appear.
+● As a mentee, if I search
+for a mentor by name and
+they are not found in the
+56
+
+mentors center, then an
+empty page should
+appear.
+10
+
+As a mentor, I want to add private 7
+
+Feature
+
+Done
+
+● As a mentor, if I go to the
+
+sessions to my schedule so that I
+
+add sessions page and
+
+can offer personalized guidance
+
+select a private session
+
+to mentees.
+
+and input the date, time
+and click on the add
+button then the session
+should be saved and
+visible in available
+session.
+● As a mentor, I should not
+be allowed to add a new
+session if the time gap
+between it and an already
+existing session is less
+than one hour.
+
+11
+
+As a mentee, I want to book a
+
+8
+
+Feature
+
+Done
+
+● As a mentee, if I open the
+
+private session so that I receive
+
+mentors center page and
+
+personalized advice in a manner
+
+see a list of all available
+
+that aligns with my preferences.
+
+mentors and I select a
+suitable mentor then I can
+see all available time slots
+for a private session with
+that mentor.
+● As a mentee, if I choose
+the most suitable time for
+me, and click on the book
+button then the session
+will be added in the
+upcoming sessions, after
+57
+
+that I should receive a
+confirmation message for
+this booking.
+● As a mentee, if no time
+slots are available with
+the mentor, then a
+message will appear
+stating “No available
+sessions at the moment” .
+12
+
+As a user (mentor or mentee), I
+
+2
+
+Feature
+
+Done
+
+● As a user, if I want to join
+
+want to be able to join a private
+
+my private session, I go to
+
+session so that I can participate in
+
+the Upcoming Sessions
+
+personalized, one-on-one
+
+page and click on the Join
+
+guidance tailored to my needs.
+
+button. Then will only be
+able to join the session
+once its scheduled time
+has started.
+● As a user, if I try to join a
+private session before its
+scheduled start time, Then
+I should see a message
+saying the session hasn’t
+started yet. Please wait!.
+● As a user, if the scheduled
+time for my private
+session has passed and I
+didn’t join it, then I
+should see a message
+saying 'Session Ended' to
+inform me that the session
+is no longer available.
+
+58
+
+13
+
+As a mentee, I want to rate
+
+3
+
+Feature
+
+Done
+
+mentors after sessions so that I
+
+● As a mentee, if I complete
+a session, then I can rate
+
+can provide feedback and help
+
+the session with that
+
+improve the ASPIRA platform
+
+mentor in past session
+
+reliability for others.
+
+page.
+● As a mentee, if I provide
+a rating (e.g., 1–5 stars),
+then the system
+successfully stores it in
+the database.
+● As a mentee, if I leave
+feedback in the text box,
+then the system saves my
+comments along with the
+rating.
+
+14
+
+As a mentee, I want to see a list
+
+5
+
+Feature
+
+Done
+
+● As a mentee, if I open the
+
+of my upcoming sessions so that
+
+upcoming sessions page
+
+I stay informed, and keep track of
+
+then I can view a list of
+
+my sessions.
+
+my currently booked
+sessions, including details
+such as the session
+date,time, mentor’s name.
+● As a mentee, If I have no
+upcoming booked
+sessions, then a message
+should appear stating,
+“No upcoming sessions”.
+
+59
+
+15
+
+As a mentor, I want to see my
+
+5
+
+Feature
+
+Done
+
+● As a mentor, if I open the
+upcoming Sessions,then I
+
+upcoming sessions with mentees,
+
+will be able to see all my
+
+so that I stay informed, and keep
+
+upcoming sessions
+
+track of upcoming sessions.
+
+booked by mentees with
+details such as the session
+date, time and the name of
+the mentee who booked it.
+● As a mentor, If I have no
+upcoming booked
+sessions by mentees, then
+a message should appear
+stating, “No upcoming
+sessions”.
+
+16
+
+As a mentor, I want to see a
+
+3
+
+Feature
+
+Done
+
+● As a mentor, if I open the
+
+history of my past sessions with
+
+past session page then I
+
+mentees, so that I can refer back
+
+will be able to see all my
+
+to them if I need to.
+
+past sessions with
+mentees with details such
+as the date,time of the
+session ,name of the
+mentee who booked it.
+● As a mentor, If I have no
+past sessions, then a
+message should appear
+stating, “No past
+sessions”.
+
+60
+
+17
+
+As a mentee, I want to edit the
+
+5
+
+Feature
+
+To Do
+
+● As a mentee, if I go to the
+
+scheduled time of my private
+
+upcoming sessions, and
+
+session so that I can attend at a
+
+click on private sessions
+
+time that is convenient for me.
+
+and select the session I
+want to reschedule and
+click on edit button and
+all available time slots
+with the mentor will
+display then I can select a
+new time and click book
+button, a confirmation
+message will appear.
+● As a mentee, if I didn’t
+find other time slots
+available with the mentor,
+then a message would
+appear stating, “No
+available sessions at the
+moment”.
+
+18
+
+As a mentee, I want to delete my
+
+5
+
+Feature
+
+To Do
+
+● As a mentee, if I go to
+upcoming sessions, I can
+
+private or group sessions so that I
+
+select the session whether
+
+can avoid attending a session if I
+
+(group or private ) I want
+
+no longer need it.
+
+to delete and click on the
+delete button then a
+confirmation message for
+deleting should appear .
+
+19
+
+As a mentee, I want to book
+
+5
+
+Feature
+
+To Do
+
+● As a mentee, if I open the
+
+available group sessions so that I
+
+mentee homepage then I
+
+can gain broader career advice
+
+can view a list of all
+
+and learn from shared
+
+available group sessions
+
+experiences.
+
+with their details, such as
+61
+
+title, date, time, mentor
+name and i can choose
+the group session I want,
+and I can click on the
+book button to add it to
+the upcoming sessions
+then I should receive a
+confirmation message for
+this booking.
+● As a mentee, if no group
+sessions are available,
+then I see a message that
+says, "No group sessions
+available at the moment."
+20
+
+As a mentor, I want to edit an
+
+5
+
+Feature
+
+To Do
+
+● As a mentor, if I go to the
+
+available private session to a time
+
+available sessions page
+
+that better fits my availability so
+
+and select the private
+
+that I can still provide quality
+
+session I want to
+
+guidance to the mentee.
+
+reschedule and click on
+the edit button then I can
+update the session's date
+and time by entering new
+values in the provided
+fields and then clicking on
+the edit button.
+
+62
+
+21
+
+As a mentor, I want to edit a
+
+8
+
+Feature
+
+To Do
+
+● As a mentor, if I go to the
+upcoming sessions page
+
+booked private session to a time
+
+and select the private
+
+that better fits my availability so
+
+session I want to
+
+that I can still provide quality
+
+reschedule and click on
+
+guidance to the mentee.
+
+the edit button then I can
+update the session's date
+and time by entering new
+values in the provided
+fields and then clicking on
+the edit button, Then a
+notification will be sent to
+the mentee whose session
+times i have modified.
+
+22
+
+As a mentor, I want to add group
+
+3
+
+Feature
+
+To Do
+
+● As a mentor, if I go to the
+add sessions page and
+
+sessions so that I can share
+
+select group sessions then
+
+knowledge and expertise with
+
+I can input title, date, time
+
+multiple mentees.
+
+and click on the add
+button, then the session
+should be saved and
+visible in the available
+session page ,Then it
+appears in the home page
+for mentees.
+
+23
+
+As a mentor, I want to edit a
+group session to a time that better
+fits my availability, ensuring I can
+still effectively deliver the session
+to mentees.
+
+5
+
+Feature
+
+To Do
+
+● As a mentor, if I go to the
+upcoming sessions page
+and select the group
+session I want to
+reschedule and click on
+the edit button then I can
+update the session's title,
+63
+
+date, and time by
+entering new values in the
+provided fields, and then
+click on the edit button.
+24
+
+As a mentor, I want to delete a
+
+5
+
+Feature
+
+To Do
+
+upcoming sessions page
+
+group session , if I no longer want
+
+and select the group
+
+them, so that I do not have an
+
+session I want to delete
+
+appointment with mentees if I
+
+and click on the delete
+
+cannot or do not want to start the
+
+button then the group
+
+session.
+25
+
+As a mentor, I want to delete an
+
+● As a mentor, if I go to the
+
+session will be deleted.
+5
+
+Feature
+
+To Do
+
+● As a mentor, if I go to the
+available sessions page
+
+available private session , if I no
+
+then I can select the
+
+longer want them, so that I do not
+
+private session I want to
+
+have an appointment with
+
+delete and click on the
+
+mentees if I cannot or do not want
+
+delete button , then a
+
+to start the session.
+
+confirmation message for
+deleting should appear .
+
+26
+
+As a mentor, I want to delete a
+booked private session, if I no
+longer want them, so that I do not
+have an appointment with
+mentees if I cannot or do not want
+to start the session.
+
+8
+
+Feature
+
+To Do
+
+● As a mentor, if I go to the
+upcoming sessions ,then I
+can select the session I
+want to delete and click
+on the delete button ,a
+confirmation message for
+deleting should appear
+,Then a notification will
+be sent to the mentee
+whose session times I
+have deleted.
+
+64
+
+27
+
+As a user (mentor, mentee), I
+
+3
+
+Feature
+
+To Do
+
+● As a user, if I go to the
+
+want to
+
+account page and click on
+
+edit my profile information so
+
+the edit button to change
+
+that I can keep it updated.
+
+my information then my
+information should be
+save and updated
+● As a user, if I do not make
+any changes to my
+information then the
+original information
+should remain unchanged
+
+28
+
+As a mentee, I want to use a CV
+
+5
+
+Feature
+
+To Do
+
+● As a mentee, if I go to the
+
+builder so that I can create a
+
+CV builder page, then I
+
+professional CV to boost my
+
+should see a form that
+
+career growth opportunities.
+
+allows me to input my
+relevant information.
+● As a mentee, if I complete
+the form and submit it,
+then a professional CV
+should be generated that I
+can preview and
+download.
+
+29
+
+As a mentee, I want to be notified
+
+7
+
+Feature
+
+To Do
+
+● As a mentee, if my
+
+when my booked private/group
+
+mentor reschedules my
+
+session is rescheduled or deleted
+
+booked private/group
+
+by my mentor so that I can stay
+
+session, then I should
+
+informed about any changes.
+
+receive a notification so
+that I can book a
+replacement session
+accordingly.
+
+65
+
+● As a mentee, if my
+mentor deletes the booked
+private/group session,
+then I should receive a
+notification informing me
+of the cancellation.
+30
+
+As a mentor, I want to write a
+
+3
+
+Feature
+
+To Do
+
+● As a mentor, if I open the
+
+summary of my past sessions
+
+past sessions page and
+
+with mentees, so that the mentee
+
+click on the summary text
+
+can benefit from the key points
+
+box, then I can write key
+
+discussed.
+
+points discussed with the
+mentee. This summary
+will also appear on the
+mentee's Past Sessions
+page.
+
+31
+
+As a mentor, I would like to be
+notified whenever a mentee
+books, modifies, or cancels a
+private session, so that I will be
+able to stay informed about my
+schedule and manage my time
+effectively.
+
+8
+
+Feature
+
+To Do
+
+● As a mentor , if the
+mentee reschedules the
+private session that he
+booked with me , then I
+should receive a
+notification.
+● As a mentor , if the
+mentee booked a new
+private session with me ,
+then I should receive a
+notification.
+● As a mentor , if the
+mentee deletes the private
+session that he booked
+with me , then I should
+receive a notification.
+66
+
+32
+
+As a mentee, I want to ask an AI
+
+8
+
+Feature
+
+To Do
+
+● As a mentee, if I asked
+
+chatbot about career advising so
+
+the chatbot a career
+
+that I can get the information
+
+question then it should
+
+easily and correctly.
+
+answer me.
+● As a mentee, if I didn't
+write anything then it
+should not respond.
+
+33
+
+As a mentee, I want to explore a
+
+5
+
+Feature
+
+To Do
+
+dedicated courses center that
+
+● As a mentee, if I open the
+courses center page, then
+
+provides information and links to
+
+I can browse a list of
+
+learning resources so that I can
+
+available courses.
+
+easily access relevant educational
+
+● As a mentee, if I click on
+
+opportunities.
+
+a course link, then the
+course page opens in a
+new tab.
+
+34
+
+35
+
+As a mentee, I want to benefit
+
+8
+
+Feature
+
+To Do
+
+● As a mentee, if I open the
+
+from a course recommendation
+
+courses center, then I can
+
+system that suggests learning
+
+filter personalized course
+
+materials so that I can find
+
+recommendations based
+
+courses that match my interests
+
+on my interests and
+
+and preferences.
+
+preferences.
+
+As a mentee, I want the chatbot to
+
+3
+
+Feature
+
+To Do
+
+● As a mentee, if I ask a
+chatbot, then it should
+
+answer me within 10 seconds so
+
+answer within 10 seconds.
+
+that I don't have to wait for a long
+time.
+36
+
+As a mentee, I want to see a
+history of my past sessions, so
+
+3
+
+Feature
+
+In
+progress
+
+● As a mentee, if I open
+past sessions then I can
+
+that I can refer back to them if I
+
+see a list of all my past
+
+need to.
+
+booked sessions with
+
+67
+
+details like the session
+date, time, mentor name,
+rate, session summary
+● As a mentee, if I have no
+past sessions, then I
+should see a message that
+says, "No past sessions
+found."
+37
+
+As a user(mentor, mentee,admin),
+
+3
+
+Feature
+
+In
+progress
+
+I want the platform to be easy to
+
+● As a user, if I open the
+platform for the first
+time,then I should learn
+
+use and navigate, with intuitive
+
+how to use it in about 10
+
+interfaces and clear instructions,
+
+minutes
+
+so that I can learn how to use it in
+about 10 minutes.
+38
+
+As a user (mentor,
+
+3
+
+Feature
+
+In
+progress
+
+mentee,admin), I want the
+
+● As a user, if I want to use
+the site, then it must be
+available 99% of the time
+
+platform to be available 99% of
+
+I try to access it.
+
+the time I try to access it, so that I
+don't get frustrated.
+39
+
+As a mentee, I want the results of
+my search for a mentor to appear
+within 10 seconds, so that I can
+ensure a fast and responsive
+experience.
+
+3
+
+Feature
+
+In
+progress
+
+● As a mentee, if I type the
+mentor's name in the
+search box, then the
+results should appear
+within 10 seconds.
+
+68
+
+40
+
+As a user(mentor, mentee), I want
+
+3
+
+Feature
+
+the session history to appear
+
+In
+
+● As a user, if I go to the
+
+progress
+
+within 10 seconds, so that I can
+see my upcoming and past
+sessions quickly and efficiently.
+
+upcoming or past session
+history page,then the data
+should appear within 10
+seconds.
+
+Table 5 Shows the status of user stories for each release.
+All user stories related to Release 1 have been successfully implemented, and all acceptance
+criteria have been met , their status is marked as "Done".
+As for the stories planned for Release 2, their status is currently "To Do".
+The status "In Progress" indicates that the story was implemented in this release, but work on
+it will continue in the release2.
+
+69
+
+chapter 5:
+System design
+
+70
+
+5.
+
+System Design
+5.1 Architecture
+The Client-Server architecture has been selected as the most suitable design for the
+ASPIRA platform, as it provides centralized data management and ensures effective
+communication between users (mentees, mentors, and admin) and the server. The server is
+responsible for processing all client requests, including searching for mentors by name,
+filtering by field, scheduling sessions, recommending relevant courses, and reviewing mentor
+registration requests submitted by mentors for approval or rejection by the admin. It also
+connects to the database to store and retrieve information before sending the results back to the
+clients using the appropriate protocol.
+This architecture significantly simplifies data management through centralized
+administration, allowing the storage of all critical information such as mentor registration
+statuses in a single database, making it easier for the admin to review and manage the system
+efficiently. Additionally, all records remain easily accessible since they are maintained on the
+central server, allowing for immediate data retrieval when needed.
+This architecture also ensures fast response times when searching for mentors or filtering
+results, as the server quickly processes and returns data without requiring local storage on user
+devices, improving platform performance. Moreover, it provides strong security and data
+protection, ensuring that sensitive information such as registration requests, CVs, and session
+details is stored in a secure location rather than being distributed across multiple devices,
+reducing the risk of data loss or unauthorized access.
+Furthermore, the Client-Server architecture offers scalability, allowing the server capacity
+to be expanded easily to handle increased requests as the number of users grows, ensuring
+system stability and reliability even with higher traffic.
+Based on these factors, the Client-Server architecture is the ideal choice for ASPIRA in
+terms of performance, reliability, and ease of use, enabling users (mentees, mentors, and
+admin) to interact with the platform efficiently while ensuring a smooth and dependable
+experience for all.
+71
+
+The following diagram illustrates the Client-Server architecture chosen for designing the
+ASPIRA platform.
+
+Figure 9 Client-Server architecture
+
+72
+
+5.2 Class Diagram /DFD
+Figure 10 shows the class diagram of the ASPIRA platform. There are three main user types:
+Admins, Mentors, and Mentees, all extending from the general User class. Mentors can sign
+up, add and join sessions, view notifications, update their profile, upload certificates, and write
+summaries after each session. Mentees can sign up, search and filter mentors, book and join
+sessions, view notifications, build their CVs through the CVbuilder, and access recommended
+courses via the courseCenter. Admins handle mentoring requests in the background to ensure
+the platform runs smoothly.
+ASPIRA also includes core features like Sessions, Notifications, Rating, CVbuilder, and
+CourseCenter. Notifications keep users updated, the rating allows mentees to leave feedback,
+and sessions are managed through a structured and accessible flow.
+All these components work together to make mentorship easier, smarter, and more effective.
+
+73
+
+Figure 10 The ASPIRA Platform Class Diagram
+
+5.3 Component Level Design
+To better understand how ASPIRA works, we’ve illustrated three of its most important
+features: Rate Mentors, Add Private Session, and Search Mentors. We’ve included
+flowcharts for both the Search and Add Private Session features to show how each step flows
+from the moment a mentor or mentee takes action, to how the system responds. For the Rate
+Mentors feature, which involves more conditional logic (like checking if a session was
+completed or if a mentor was already rated), we used pseudocode to clearly represent the
+process. These visual and logical breakdowns offer a simple, structured look at how these
+74
+
+features function and help deliver a smooth, personalized experience for both mentors and
+mentees on the platform.
+
+5.3.1 Rate mentors Pseudocode
+Classification: Function
+Definition: The mentee can rate mentors after a session is completed. Each session can be
+rated once by the mentee using a 5-star scale and comment. Ratings will be saved and used to
+update the mentor’s average rating, which is displayed in the Mentor Center.
+Pre-condition: The user must be a mentee, logged in, and viewing the Past Sessions page with
+completed sessions.
+Post-condition: The rating and comment are saved, mentor's average rating is updated, and
+the rating inputs become disabled (read-only).
+Pseudocode:
+1. START
+2. currentUser = Get logged-in user.
+3. pastSessions = Retrieve all completed sessions where mentee_id == currentUser.id
+4. FOR each session in pastSessions DO
+5.
+6.
+7.
+8.
+
+IF session.is_rated == TRUE THEN
+Display session details with existing rating and comment as read-only
+ELSE
+Display session details with:
+- Comment input field
+- Star rating input (1 to 5)
+
+9.
+10.
+
+IF user clicks Submit THEN
+selectedRating = Get selected star rating
+75
+
+11.
+
+commentText = Get comment input
+
+12.
+
+Save (mentee_id, mentor_id, session_id, selectedRating, commentText) to
+
+SessionRatings table
+13.
+
+Mark session as rated (session.is_rated = TRUE)
+
+14.
+
+mentorRatings = Retrieve all ratings where mentor_id == session.mentor_id
+
+15.
+
+avgRating = Calculate average of mentorRatings
+
+16
+
+Update MentorProfile table: set avg_rating = avgRating
+
+17.
+
+Disable rating and comment inputs for this session (make read-only)
+
+18.
+19.
+
+END IF
+END IF
+
+20. END FOR
+21. Display all past sessions with ratings/comments accordingly
+22. END
+
+76
+
+5.3.2 Add Private session Flowchart
+Figure 11 illustrates the flowchart of the Add Private Session functionality for mentors in
+the ASPIRA platform. Mentors begin by accessing the "Add Sessions" tab, where they can
+input the date and time of a new session they wish to offer. The system checks that each session
+has at least a one-hour gap from the previous session by the same mentor, If there is no time
+overlapping, then the session will be saved to the database and added to the list of available
+sessions. From there, the system continues to monitor whether the session gets booked by a
+mentee. If booked, it is automatically moved to the mentor’s upcoming sessions list; otherwise,
+it remains available for mentees to book. This process ensures that mentors have full control
+over their scheduling while allowing mentees to easily discover and reserve suitable session
+slots.
+
+Figure 11 Add Private session Flowchart
+
+77
+
+5.3.3 Search mentors Flowchart
+Figure 12 shows how the Search Mentors feature works in the ASPIRA platform. When
+a mentee opens the Mentor Center, they can type in the name of the mentor they're looking for.
+The system will then check if a mentor with that name exists. If it finds a match, the mentor’s
+profile is shown. This feature is designed to make it quick and easy for mentees to find specific
+mentors, helping them connect with the right guidance more efficiently.
+
+Figure 12 Saerch mentors Flowchart
+
+78
+
+5.4 Data Design
+This section provides an overview of the data design for the first release of the project,
+beginning with an Enhanced Entity-Relationship diagram (EER). The EER diagram illustrates
+the structure of the entities and their relationships within the system. Following this, the section
+presents the Relational Schema, which outlines how data is organized into tables, specifying
+the relationships and constraints between them. The section also includes the Data Dictionary,
+an essential component that describes each entity in the database, including its name, attributes,
+and any relationships it has with other entities. Finally, it concludes with a section on EER
+considerations, which highlights the specific aspects of the ASPIRA platform that were taken
+into account when designing this EER.
+
+5.4.1 Data Models
+5.4.1.1 EER Diagram
+
+Figure 13 EER
+
+79
+
+5.4.1.2 Relational Schema
+User {User_id, first_name, last_name, password, email, phone_number, role,
+password_reset_token}
+Primary Key: User_id
+
+Admin {Admin_id, user_id}
+Primary Key: Admin_id
+Foreign Key: user_id
+
+Mentor {Mentor_id, cv_file, status, profile_picture, brief_description, certificate_file
+,user_id, field_id, experience_id}
+Primary Key: Mentor_id
+Foreign Key: user_id, field_id, experience_id
+
+Mentee {Mentee_id, interests, student_status, user_id}
+Primary Key: Mentee_id
+Foreign Key: user_id
+
+Field {id, field_name}
+Primary Key: id
+
+Years_of_Experience {id, experience_level}
+Primary Key: id
+
+80
+
+private_Session {id, room_id, date, time, status,Mentor_id, Mentee_id}
+Primary Key: id
+Foreign Key: Mentor_id, Mentee_id
+
+Group_Session {group_session_id, date, room_id, time, status, Mentor_id,Mentee_id}
+Primary Key: group_session_id
+Foreign Key: Mentor_id,Mentee_id
+
+Rating {id, comment, rating, Session_id, Mentor_id, Mentee_id }
+Primary Key: id
+Foreign Key: Session_id
+
+Notification {Notification_id, message, Mentee_id,Mentor_id}
+Primary Key: Notification_id
+Foreign Key: Mentee_id,Mentor_id
+
+cv{cv_id, personal_info, education, skills, work_experience, Mentee_id}
+Primary Key: cv_id
+Foreign Key: Mentee_id
+
+Courses {course_id, name, link, Mentee_id}
+Primary Key: course_id
+Foreign Key: Mentee_id
+
+81
+
+5.4.1.3 Data Dictionary
+5.4.1.3.1 Data Dictionary of Entities
+Table 6 Data Dictionary of Entities
+
+Entity Name
+
+Description
+
+Occurrence
+
+admins
+
+A user who reviews mentor
+
+The admin can approve or
+
+registration requests and
+
+reject multiple mentor
+
+approves or rejects them
+based on qualifications.
+
+field
+
+mentees
+
+Represents areas of expertise
+
+Each field appears once and
+
+(e.g., programming, design,
+
+may be selected by many
+
+marketing) for mentors.
+
+mentors.
+
+A user who receives
+
+A mentee is allowed to join
+
+mentorship, Can join sessions,
+
+multiple private or group
+
+view courses, use the CV
+
+sessions
+
+builder and use AI chatbot.
+
+mentors
+
+ratings
+
+A user who provides
+
+A mentor is allowed to
+
+mentorship sessions.
+
+guide many mentees.
+
+Allows mentees to rate
+
+One rating is submitted by
+
+sessions with a scale (1-5) and
+
+the mentee for each
+
+a comment.
+
+completed session with a
+mentor.
+
+private_sessions
+
+A private session that takes
+
+Each mentor or mentee can
+
+place between one mentor and
+
+participate in one, none, or
+
+one mentee
+
+many sessions, but not
+simultaneously in more than
+one session
+
+82
+
+users
+
+years_of_experience
+
+notifications
+
+The actual user of the
+
+A user Can be a mentor,
+
+platform.
+
+mentee, or admin.
+
+Provides years of
+
+Each experience can be
+
+experience for mentors.
+
+selected by multiple mentors.
+
+Sends notification when
+
+Each user (mentor or mentee)
+
+sessions are modified or
+
+can receive one, none or many
+
+canceled by either mentor or
+
+notifications.
+
+mentee.
+
+courses
+
+Educational resources
+
+Each course can be viewed by
+
+recommended to mentees.
+
+one , none or many mentees.
+
+Contains a name and a link.
+
+group_sessions
+
+cv
+
+Represents group
+
+Each group session is
+
+mentoring sessions initiated
+
+initiated by one mentor and
+
+by a mentor and attended
+
+attended by one, none or
+
+by multiple mentees
+
+many mentees.
+
+A CV builder used by the
+
+Each mentee can create one,
+
+mentee to create a CV by
+
+none or many CVs.
+
+entering personal information,
+education, skills, and work
+experience..
+
+83
+
+5.4.1.3.2 Data Dictionary of Relationships
+Table 7 Data Dictionary of Relationships
+
+Entity Name
+
+Multiplicity
+
+Relationship
+
+Entity Name
+
+Multiplicity
+
+User
+
+1..1
+
+has
+
+Mentor
+
+0..*
+
+User
+
+1..1
+
+has
+
+Mentee
+
+0..*
+
+User
+
+1..1
+
+has
+
+Admin
+
+1..1
+
+Mentor
+
+1..1
+
+has
+
+field
+
+1..1
+
+Mentor
+
+1..1
+
+has
+
+years_of_experience
+
+1..1
+
+Mentor
+
+1..1
+
+receives
+
+Notification
+
+0..*
+
+Mentee
+
+1..1
+
+receives
+
+Notification
+
+0..*
+
+Mentee
+
+0..*
+
+view
+
+Courses
+
+0..*
+
+group_Session
+
+0..*
+
+join
+
+Mentee
+
+0..*
+
+Group_Session
+
+0..*
+
+join
+
+Mentor
+
+1..1
+
+private_Session
+
+0..*
+
+join
+
+Mentee
+
+1..1
+
+private_Session
+
+0..*
+
+join
+
+Mentor
+
+1..1
+
+private_Session
+
+1..1
+
+has
+
+Rating
+
+0..1
+
+cv
+
+0..*
+
+has
+
+Mentee
+
+1..1
+
+84
+
+5.4.1.3.3 Data Dictionary of Attributes
+Table 8 Data Dictionary of Attributes
+
+Entity Name
+
+Attribute
+
+Description
+
+Data
+
+Length
+
+Nulls Mu
+
+Default
+
+lti-
+
+Value
+
+Type
+
+Range
+
+PK
+
+val
+ued
+admins
+
+admin_id
+
+Unique
+
+int
+
+11
+
+N
+
+N
+
+PK
+
+int
+
+11
+
+N
+
+N
+
+PK
+
+varchar
+
+255
+
+N
+
+N
+
+identifier for
+the admin
+field
+
+id
+
+Unique
+identifier
+
+field_name
+
+Name of the
+field or
+
+CHARSET=
+utf8;
+
+specialization
+
+mentees
+
+mentee_id
+
+Unique
+
+int
+
+10
+
+N
+
+N
+
+enum
+
+N
+
+N
+
+text
+
+N
+
+N
+
+PK
+
+identifier for
+the mentee
+student_status
+
+Current
+academic
+level of the
+mentee
+
+interests
+
+Textual input
+describing the
+
+CHARSET=
+utf8;
+
+mentee's
+interests
+
+--85
+
+mentors
+
+mentor_id
+
+Unique
+
+int
+
+11
+
+N
+
+N
+
+PK
+
+varchar
+
+255
+
+N
+
+N
+
+Y
+
+N
+
+'pending'
+
+Y
+
+N
+
+NULL
+
+text
+
+Y
+
+N
+
+longtext
+
+Y
+
+N
+
+identifier for
+the mentor
+cv_file
+
+Path to
+mentor's
+uploaded CV
+
+status
+
+Current
+
+enum
+
+approval
+status
+profile_pictur
+
+Path to
+
+e
+
+mentor's
+
+varchar
+
+255
+
+profile picture
+brief_descripti
+
+Short bio of
+
+on
+
+the mentor
+
+certificate_file
+
+Path to
+uploaded
+
+CHARSET=
+utf8;
+
+certificates
+ratings
+
+id
+
+Unique
+
+int
+
+10
+
+N
+
+N
+
+int
+
+11
+
+Y
+
+N
+
+PK
+
+identifier
+rating
+
+Numerical
+
+NULL
+
+score given to
+session
+
+86
+
+comment
+
+Feedback
+
+text
+
+Y
+
+N
+
+comment on
+
+CHARSET=
+utf8mb4
+
+session
+private_sessions
+
+id
+
+Unique
+
+int
+
+11
+
+N
+
+N
+
+PK
+
+date
+
+N
+
+N
+
+time
+
+N
+
+N
+
+Y
+
+N
+
+NULL
+
+Y
+
+N
+
+'available'
+
+identifier
+date
+
+Scheduled
+date of session
+
+time
+
+Scheduled
+time of
+session
+
+room_id
+
+Generated
+
+varchar
+
+255
+
+room
+identifier
+status
+
+Current
+
+enum
+
+approval
+status
+users
+
+user_id
+
+Reference to
+
+int
+
+11
+
+N
+
+N
+
+varchar
+
+50
+
+N
+
+N
+
+varchar
+
+50
+
+N
+
+N
+
+PK
+
+the user
+first_name
+
+User's first
+name
+
+last_name
+
+User's last
+name
+
+87
+
+email
+
+Email address
+
+varchar
+
+100
+
+N
+
+N
+
+password
+
+Encrypted
+
+varchar
+
+255
+
+N
+
+N
+
+varchar
+
+20
+
+N
+
+N
+
+N
+
+N
+
+password
+
+phone_numbe
+
+User's contact
+
+r
+
+number
+
+role
+
+User role
+
+enum
+
+password_rese
+
+Token for
+
+varchar
+
+255
+
+Y
+
+N
+
+t_token
+
+resetting
+
+int
+
+11
+
+N
+
+N
+
+varchar
+
+50
+
+N
+
+N
+
+NULL
+
+password
+years_of_experie
+
+id
+
+nce
+
+Unique
+
+PK
+
+identifier
+experience_le
+
+Years of
+
+vel
+
+experience
+
+CHARSET=
+utf8;
+
+level
+group_session
+
+group_session
+
+Unique ID for
+
+_id
+
+group session
+
+date
+
+Date of the
+
+int
+
+11
+
+date
+
+N
+
+N
+
+N
+
+N
+
+Y
+
+N
+
+PK
+
+session
+room_id
+
+Generated
+
+varchar
+
+255
+
+room
+identifier
+
+88
+
+time
+
+Time of the
+
+time
+
+N
+
+N
+
+Booking
+
+enum('a
+
+Y
+
+N
+
+status
+
+vailable
+
+N
+
+N
+
+text
+
+Y
+
+N
+
+text
+
+Y
+
+N
+
+session
+status
+
+'available'
+
+','booke
+d','com
+pleted')
+cv
+
+cv_id
+
+Unique
+
+int
+
+11
+
+PK
+
+identifier for
+the CV
+personal_info
+
+Basic personal
+details
+
+education
+
+Education
+history
+
+Courses
+
+skills
+
+List of skills
+
+text
+
+Y
+
+N
+
+work_experie
+
+Previous job
+
+text
+
+Y
+
+N
+
+nce
+
+experience
+
+course_id
+
+Unique
+
+int
+
+11
+
+N
+
+N
+
+varchar
+
+100
+
+N
+
+N
+
+PK
+
+identifier for
+each course
+name
+
+Name of the
+course
+
+89
+
+link
+
+Online URL
+
+varchar
+
+255
+
+Y
+
+N
+
+int
+
+11
+
+N
+
+N
+
+Y
+
+N
+
+for the course
+Notification
+
+notification_id
+
+Unique
+
+PK
+
+identifier for
+notification
+massage
+
+Content of the
+
+text
+
+notification
+
+5.5 Interface Design
+5.5.1 Sitemap
+
+Figure 14 sitemap
+
+5.5.2 UX guidelines
+In developing the ASPIRA platform, we prioritized five core User Experience (UX)
+guidelines to ensure that our platform is intuitive, engaging, and accessible. These principles
+of error prevention, design dialog to yield closure, informative feedback, striving for
+consistency, and reducing short-term memory load were carefully applied to enhance the
+
+90
+
+overall user journey. Each plays a critical role in making ASPIRA a platform that is not only
+functional but also user-friendly and reliable.
+
+1. Error Prevention
+To minimize user errors and improve data accuracy, ASPIRA uses clear guidance, visual
+cues, and validation checks.
+● Inputs like email, and numeric fields are validated in real time to prevent incorrect
+submissions.
+● When submitting a form, if a required field is left empty, the input box is highlighted
+in red to signal missing information.
+● If a user enters invalid content, like typing numbers in a name field, a specific error
+message appears below the field, guiding them to correct it, as shown in figure [15].
+These measures help ensure both data integrity and user confidence, reducing
+frustration and improving the platform’s usability.
+
+Figure 15 Error Prevention
+
+91
+
+2. Design Dialog to Yield Closure
+ASPIRA ensures users receive confirmation when completing important tasks,
+promoting a sense of accomplishment and clarity.
+● When a mentee successfully books a popup message is shown confirming the action,
+as shown in figure [16].
+● Before accepting or rejecting mentor requests, admins are shown a confirmation
+prompt to verify their action.
+
+These dialogs guide users through the platform, eliminating uncertainty and
+reinforcing completed actions.
+
+Figure 16 Design Dialog to Yield Closure
+
+92
+
+3. Informative Feedback
+To support smooth interaction, ASPIRA provides real-time feedback across all major
+touchpoints.
+● During login, users are notified instantly if credentials are incorrect or if their account
+is pending admin approval.
+● During private session scheduling, if a mentor attempts to add a session less than one
+hour before an already scheduled session, a clear error message appears to prevent
+booking conflicts, as shown in figure [17].
+This continuous feedback ensures users always understand what’s happening and
+what to do next.
+
+Figure 17 Informative Feedback
+
+93
+
+4. Striving for Consistency
+ASPIRA maintains a consistent design language across all pages to ensure users can
+navigate the platform with ease and confidence.
+The ASPIRA logo and top navigation bar are fixed and visible on every page, offering
+seamless access to key sections like Mentor Center. This consistent placement reinforces
+orientation and usability.
+All interactive elements such as the “Book,” “Approve,” “Reject,” buttons follow a
+standardized design:
+● Primary actions are colored in purple or green.
+● Destructive actions like “Reject” are always in red, as shown in figure [18].
+● Buttons respond with clear hover effects and confirmation dialogs to maintain
+uniform feedback.
+ASPIRA keeps a consistent look and feel across the platform to make navigation easier.
+Mentor cards and course cards follow similar clean layouts, with key info shown up front.
+While sign-up forms for mentors and mentees have different fields, they share the same
+structure and validation style helping users feel familiar with the flow no matter where they
+are.
+
+Figure 18 Striving for Consistency
+
+94
+
+5. Reducing Short-Term Memory Load
+Human short-term memory is limited, and effective UX design must minimize the
+cognitive effort required to remember details. ASPIRA addresses this by ensuring that essential
+information remains visible, accessible, and well-organized throughout the platform.
+Implemented Features in ASPIRA:
+● Upcoming Sessions Overview:
+On the mentee dashboard, all booked sessions are displayed along with date and
+time. This reduces the need for users to memorize upcoming appointments and
+ensures they’re always aware of their schedules, as shown in figure [19].
+● Mentor Center Quick View:
+Mentor profiles show essential information upfront field of expertise, years of
+experience, and availability so mentees can make decisions quickly without needing
+to open multiple profiles or retain complex comparisons in memory.
+
+Figure 19 Reducing Short-Term Memory Load
+
+95
+
+chapter 6:
+System
+implementation
+
+96
+
+6.
+
+System Implementation
+
+The system implementation phase of ASPIRA involved the development of four key
+components: a web application for mentees, a mentor interface to manage their sessions, an
+admin page for accepting or rejecting mentor applications, and a backend system with a
+connected database to support all three. In this section, we discuss the key implementation
+steps and procedures, as well as the major and challenging parts of the code.
+
+6.1 Implementation Key Steps
+The implementation of our ASPIRA platform involved several key steps, including:
+● Requirements Gathering
+We needed to gather the requirements to lay the foundation of the development process.
+This included understanding the project objectives, user needs, and technical requirements.
+● Designing the User Interface
+The user interface was designed with a focus on intuitive navigation and a clean,
+organized layout. Key areas were carefully planned to ensure a smooth and user-friendly
+experience for all users.
+● Development
+The development phase included building the front-end, back-end, and the supporting
+database structure:
+
+97
+
+1. Building the Front-End :
+We built the front-end of the platform using HTML, CSS, and JavaScript. This included
+designing and developing forms and interactive components to ensure a responsive, userfriendly, and visually appealing interface.
+2. Building the Back-End:
+We started by creating the database. We used phpMyAdmin, a popular web-based
+database management tool, to manage our SQL database. This allowed us to store and retrieve
+data efficiently. Then, we developed the back-end using PHP for the website. This involved
+creating server-side components such as Database Management, data validation,
+authentication, and authorization logic.
+● Testing and Debugging
+Throughout the development process, we performed thorough testing and debugging on both
+the front-end and back-end components. This included testing individual features based on
+user stories, conducting integration tests to ensure seamless interaction between system
+modules, and performing user acceptance testing after implementation to confirm that the
+platform meets user expectations and functions correctly.
+
+6.2 Major Parts of ASPIRA Code
+This section outlines the major implementation steps behind the core functionalities of the
+ASPIRA platform. These components represent the backbone of the system and are essential
+to delivering a smooth and responsive mentorship experience. Key parts include the private
+session creation and booking features, real-time video call integration powered by the
+ZEGOCLOUD API, and secure email functionality implemented through PHPMailer.
+
+6.2.1 Add Session Function
+The "Add Private Session" feature allows mentors to create and manage their availability
+by adding private session slots directly from the interface. This functionality is implemented
+using PHP and MySQL, with form validation and scheduling logic to ensure proper session
+management.
+98
+
+Figure 20 shows the flow that begins when the page loads. The system checks whether the
+mentor is logged in by verifying the presence of a valid `user_id` in the active session. If the
+user is not authenticated, they are redirected to the login page. Once authenticated, mentors can
+fill out a form to add a session by selecting a date and time. The system ensures that all required
+fields are filled before processing the request.
+
+Figure 20 check login
+
+Upon submission, the server checks whether there is any time conflict with existing
+sessions on the same date. This is handled by querying the database for all sessions associated
+with the same mentor and date. By retrieving only the relevant session times, the system
+ensures that validation is efficient and accurate. Figure 21 illustrates how both the newly
+requested session time and the existing ones are converted to UNIX timestamps using the
+strtotime() function. The time difference is then calculated in hours using the expression
+abs($new_time - $existing_time) / 3600, which allows the system to evaluate whether the
+requested session overlaps with or is too close to another.
+To maintain a buffer between sessions, a condition is used to check if the time difference
+is less than one hour (if ($time_difference < 1)). If this condition is true, the system flags the
+entry as a conflict and prevents the session from being added. This logic is essential for
+avoiding double bookings and ensuring that mentors have enough preparation and recovery
+time between sessions. If a conflict is detected, a clear error message is displayed to the mentor,
+allowing them to select a different time slot. This conflict detection mechanism helps maintain
+schedule integrity, avoids overbooking, and improves the reliability of session planning on the
+platform.
+
+99
+
+Figure 21 check conflict the time
+
+Figure 22 shows if no conflict exists, the session is inserted into the sessions table using
+an INSERT statement, which includes the mentor’s ID, selected date, selected time, and sets
+the session status to 'available'. This ensures that the session becomes immediately visible for
+booking by mentees. The insertion is handled securely using a prepared statement, where the
+values are safely bound and executed to prevent SQL injection. The data for this process is
+collected from an HTML <form> that uses the POST method and includes a hidden input to
+carry the mentor’s ID from the active session. The form also contains an <input type="date">
+element for selecting the session date, with the min attribute set to <?php echo date('Y-m-d');
+?>, which restricts users from choosing past dates. Additionally, an <input type="time"> is
+used to allow mentors to specify the session time in a consistent 24-hour format. These
+elements ensure that the user submits clean, valid input before the session is processed by the
+backend.
+
+.
+
+Figure 22 php insert the session
+
+100
+
+Figure 23 html insert the session
+
+The newly added session appears under the "Available Sessions" section, where only future
+sessions that are available for booking are displayed. The sessions are organized in
+chronological order and shown in a clear table format that includes the date, time, and a fixed
+duration of 45 minutes, which is considered an ideal length for maintaining focus and
+productivity during mentorship.[23]
+
+6.2.2 Book Session Function
+The "Book Private Session" feature allows mentees to view a mentor’s profile and select
+from a list of available time slots to reserve a session. This feature ensures a smooth booking
+experience through a combination of PHP, SQL, and JavaScript components. As shown in
+Figure 24 the system executes a SQL query that joins the mentors, users, and field tables to
+gather the mentor’s profile information. This includes their full name, profile picture, field of
+expertise, and a brief description. These details are then displayed in a neatly formatted profile
+card, helping the mentee get to know the mentor before booking.
+
+Figure 24 SQL query that joins the mentors, users, and field
+
+101
+
+To display the available time slots, the backend first retrieves the mentor’s actual user_id
+by querying the mentors table using their mentor_id. It then filters sessions from the sessions
+table where the status is set to 'available' and the combined date and time is in the future,
+ensuring only upcoming and unbooked slots are shown. These results are ordered
+chronologically and passed to the frontend.
+
+Figure 25 Retrieve reserved sessions
+
+In Figure 26 each session is displayed as a clickable time slot card containing the session’s
+date, time, and a fixed duration of 45 minutes. The session ID is embedded in a data-id attribute,
+allowing easy reference in JavaScript. Once the page is fully loaded, an event listener
+(DOMContentLoaded) is triggered, and each time slot is initialized with a click event. When a
+mentee clicks on a slot, JavaScript captures the selected session ID using getAttribute('dataid'), visually highlights the slot by toggling a selected class, and makes the “Book Session”
+button visible by modifying its display property. This interactivity is handled through a loop
+applied on all elements with the .time-slot class using querySelectorAll(), ensuring a smooth
+and intuitive selection process.
+
+Figure 26 Javascript Retrieve reserved sessions
+
+102
+
+When the "Book Session" button is clicked, Figure 27 illustrates how JavaScript sends a
+fetch() request to book_session.php, using the POST method to pass the selected session ID to
+the backend. This dynamic request updates the corresponding session’s status from 'available'
+to 'booked' and links it to the current mentee’s ID in the database. If the operation is successful,
+the mentee is shown a confirmation modal with a personalized success message. Figure 28
+shows how this is handled by calling the showModal() function, which updates the modal’s
+content and displays it using `document.getElementById("successModal").style.display =
+"flex"`. When the user clicks the "OK" button inside the modal, the `closeModal()` function is
+triggered, redirecting them to their "Upcoming Sessions" page using window.location.href =
+"menteeUpcomingSession.php".
+On the backend, the book_session.php script retrieves the session details to ensure it is still
+available, and if so, it proceeds to assign a room_id (generated using uniqid() if not already
+set). Figure 29 demonstrates this backend logic. The script then updates the session’s status,
+assigns the current mentee, and saves these changes to the database using a prepared UPDATE
+statement. If the update is successful, a confirmation message including the generated room_id
+is returned, ensuring that the session is fully booked and ready for future use.
+
+Figure 27 script for book session
+
+Figure 28 Javascript to show pop-window
+
+103
+
+Figure 29 book_sessions.php
+
+6.2.3 ZEGOCLOUD API
+
+ZEGOCLOUD is a real-time audio and video communication service that provides
+developers with powerful SDKs and APIs to build seamless video call, voice chat, and live
+streaming features into their applications. It offers low latency, high-quality media
+transmission, and a wide range of customizable UI components to suit different use cases from
+online meetings and virtual classrooms to one-on-one consultations. In this project,
+ZEGOCLOUD is used to power private video sessions between mentors and mentees, allowing
+for secure, interactive communication without the need to build a video infrastructure from
+scratch. By integrating ZEGOCLOUD, the platform ensures a smooth, reliable, and scalable
+video calling experience.
+Figure 30 illustrates the process of initializing the video call session. The system first
+retrieves the roomID from the URL using the $_GET superglobal. This roomID uniquely
+identifies the virtual meeting room associated with a scheduled session. Using this identifier,
+the backend executes a prepared SQL statement to fetch the scheduled time and date of the
+session from the sessions table.
+104
+
+This ensures that the session details are securely retrieved and correspond to a valid
+booking. If the session is not found either due to an incorrect or expired roomID the system
+immediately halts execution and displays an error message, preventing unauthorized or invalid
+access to the video call environment. This step is essential for validating that the session exists
+and for calculating the correct timing logic later in the workflow.
+
+Figure 30 retrieve Room ID
+
+After confirming the session exists, the system sets the timezone to Asia/Riyadh using
+date_default_timezone_set() to ensure all time calculations are based on the correct local time.
+It then calculates the session's exact start time by combining the session’s date and time fields
+and converting them into a Unix timestamp using strtotime(). To control the session’s duration,
+the end time is set to exactly 45 minutes after the start by adding 45 * 60 seconds. The current
+server time is also captured using time(), and the difference between the current time and the
+session's end time is computed to determine how many seconds remain. This remaining time
+is stored in the $time_remaining variable and later used in the JavaScript to automatically end
+the session when its duration expires. This mechanism ensures that sessions follow strict timing
+rules and helps maintain order and reliability across all scheduled video meetings.
+
+Figure 31 sets the timezone
+
+105
+
+Now the section of JavaScript plays a crucial role in enabling real-time video conferencing
+using the ZEGOCLOUD SDK and managing session timeouts automatically. It executes when
+the page finishes loading, as defined by the window.onload function.
+1. Extracting the Room ID from the URL
+As shown in Figure 32 the first step involves extracting the roomID parameter from the
+URL using a custom function getUrlParams(). This function splits the URL at the question
+mark (?) and parses the query string using URLSearchParams, returning a key-value object.
+The roomID is then retrieved from this object and stored in a constant. If no roomID is found,
+the script halts and alerts the user with an error.
+
+.
+
+Figure 32 Extracting the Room ID from the URL
+
+2. Generating ZEGOCLOUD Access Token
+Figure 33 shows how the script configures the session for the video call once the roomID is
+available. A unique user ID is randomly generated and combined with a base username (e.g.,
+"user1234"). These values are used to generate a ZEGOCLOUD kitToken using the
+ZegoUIKitPrebuilt.generateKitTokenForTest() method, which requires:
+-
+
+An appID (provided by ZEGOCLOUD),
+
+-
+
+A serverSecret for authentication,
+
+-
+
+The roomID where the call will take place,
+
+-
+
+The generated userID and userName.
+
+This token authenticates the user and grants them access to the video session.
+
+Figure 33 Generating ZEGOCLOUD Access Token
+
+106
+
+3. Joining the Room and Configuring the Call Interface
+A ZEGOCLOUD instance (zp) is created using ZegoUIKitPrebuilt.create() and initialized
+via joinRoom() with a set of configuration options tailored for private mentorship sessions.
+The container property specifies the DOM element (#root) where the video call interface
+will be rendered.
+The sharedLinks option enables participants to generate and share a unique link to the
+session room using the roomID.
+The session is set to VideoConference mode, supporting real-time, interactive video calls
+between mentor and mentee.
+Figure 34 illustrates the auto Activation of Devices :
+● turnOnMicrophoneWhenJoining: true
+● turnOnCameraWhenJoining: true
+These options automatically enable the user’s microphone and camera upon joining the
+session for a seamless start.
+● showAudioVideoSettingsButton: true
+Provides access to settings for selecting and testing audio/video devices without leaving the
+call.
+● showScreenSharingButton: true
+Enables mentors to share their screen it`s useful for presenting slides, documents, or tools.
+● showTextChat: true
+Allows mentees and mentors to exchange messages, links, or notes in parallel with the video
+call.
+● showUserList: true
+107
+
+Displays the list of connected participants, helping users confirm who is present in the
+session.
+● maxUsers: 2
+Restricts the room to only two participants (mentor and mentee) for focused, one-on-one
+engagement.
+● layout: "Auto"
+● showLayoutButton: false
+The video layout is automatically adjusted based on screen size and video feeds, with no
+option for users to change it manually keeping the UI simple and distraction-free.
+
+Figure 34 Joining the Room and Configuring the Call Interface
+
+4. Time-Based Session Control
+To ensure sessions are properly limited in duration, the script retrieves the remaining time
+from the backend PHP code (embedded with <?php echo $time_remaining * 1000; ?>) and
+stores it in the timeRemaining variable in milliseconds. This value represents the countdown
+until the session should end.
+If timeRemaining > 0, a JavaScript setTimeout is set to trigger after the specified time
+elapses. When triggered:
+● An alert notifies the user that the session has ended.
+108
+
+● A fetch() request is sent to update_session_status.php, passing the roomID to update
+the session’s status in the database to 'completed'.
+● If the backend confirms the session was updated successfully, the user is redirected to
+their respective past sessions page depending on their role.
+● Any failure to update the session status is logged in the console for debugging.
+If timeRemaining <= 0, the session is already expired, and the user is immediately shown
+an alert and redirected to the appropriate fallback page.
+
+Figure 35 Time Remaining
+
+6.2.4 Join Session Function
+In the session joining system, both the mentor and mentee follow nearly identical logic
+for displaying and handling upcoming sessions. As shown in Figure 36 an SQL query retrieves
+sessions from the sessions table where the status = 'booked', filtered by either mentor_id or
+mentee_id depending on the logged-in user. A key part of the SQL is ORDER BY s.date DESC,
+s.time DESC, which ensures that the sessions are displayed with the most recent ones first.
+
+109
+Figure 36 SQL query retrieves session
+
+To determine whether a session can be joined, the system uses conditional checks based
+on the session’s scheduled time and the current server time. If the session is scheduled for a
+future time (i.e., the session date is greater than the current date, or the session time is later on
+the same day), as shwon in Figure 37 the system displays a disabled "Join" button that triggers
+a modal popup with the message “The session hasn’t started yet. Please wait!”. This is handled
+using the condition ` if ($session_date > $current_date || ($session_date == $current_date &&
+$session_time > $current_time)) ` .
+As shwon in Figure 38 if the session has already ended, determined by the condition
+$isEnded = ($session_date < $current_date || ($session_date == $current_date &&
+$session_end_timestamp < strtotime($current_time))), and the user did not join the session in
+time, the interface simply displays the message “Session Ended” in place of the join button.
+This ensures that users who miss their scheduled time are clearly informed that the session is
+no longer accessible.
+To implement this logic accurately, the system first sets the timezone using
+`date_default_timezone_set('Asia/Riyadh')` to ensure all comparisons are in local time. It then
+fetches the current time and date with `date("H:i:s")` and `date("Y-m-d")`. The session’s
+original start time is converted using `strtotime($row['time'])`, and the session's end time is
+calculated by adding 45 minutes (45*60 seconds) to it. If the current time is greater than this
+calculated end time, the session is marked as ended.
+Otherwise, if the session is currently active, the system displays an active "Join" button
+with an anchor tag linking to WEB_UIKITS.php?roomID=..., allowing the user to enter the
+video session.
+
+Figure 37 The conditions in join
+
+110
+
+Figure 38 end session
+
+6.2.5 PHPMailer library
+Within our platform, the PHPMailer library was used as a reliable and secure solution for
+sending emails. It was integrated using Composer and configured to send messages via SMTP,
+supporting various key user interactions across the system. [29]
+One of the primary uses of PHPMailer is to send OTP (One-Time Password) verification
+codes during the registration process for both mentors and mentees. After entering their email
+address, the user receives a code via email which they must enter to complete their registration.
+This ensures that the email address is valid and helps maintain platform security.
+PHPMailer is also used in the password reset process. When a user forgets their password,
+they can request a reset link, which is sent to their email. This link contains a secure token and
+redirects the user to the reset password page, where they can safely enter and set a new
+password.
+In addition, PHPMailer is used to notify mentors about the status of their application. If a
+mentor is approved, they receive a confirmation email welcoming them to the platform. If the
+application is rejected, a polite rejection message is sent explaining that their request was not
+accepted at this time.
+
+111
+
+Through these features, PHPMailer plays a key role in improving user experience,
+strengthening platform security, and maintaining effective communication between the system
+and its users.
+
+6.3 Implementation Challenges
+Throughout the implementation process, we encountered several challenges and worked to
+overcome them, including:
+
+● User Authentication and Email Verification:
+One of the main challenges was building a secure sign-up system for both mentors and
+mentees, along with implementing OTP email verification for mentor and mentee
+registration. We used PHPMailer to send verification emails, and we faced some difficulties
+with its configuration such as email delays and deliverability issues. Ensuring a smooth
+the verification process without confusing the user required multiple tests and adjustments.
+
+● User Interface Design and Usability:
+Designing an interface that is both intuitive and functional for two different user types
+(mentors and mentees) posed several challenges. Balancing simplicity with features like
+session booking, ratings, and filters wasn’t easy. We had to make careful design choices to
+keep things clear and easy to use without losing any important features.
+
+112
+
+● Rating System and Comment Handling:
+Creating a flexible and dynamic rating system with comment support involved
+designing a UI that locks after submission, prevents duplicate ratings, and updates the
+mentor’s average score in real time. Ensuring that this logic worked consistently
+across multiple pages required extra care in both frontend and backend development.
+
+● Database Design and Interactions:
+Designing the database to handle the relationships between users, sessions, and ratings was
+a challenge. We had to make sure the data stayed accurate and that everything worked
+smoothly when updating the interface in real time.
+
+● Filtering and Search Functionality:
+Implementing filtering and search features in the Mentor Center was more complicated
+than expected. We needed to allow mentees to easily find mentors based on specific
+fields and years of experience, without slowing down the platform. Making sure the
+filters worked accurately and updated results quickly required extra work on both the
+frontend and backend.
+
+ASPIRA GitHub: https://github.com/nouraalw/2025_GP_09.git
+ASPIRA Jira:
+https://atata4343.atlassian.net/jira/software/projects/SCRUM/boards/1?atlOrigin=eyJpIjoiOT
+VjZGFkYWQ4ODA0NGRiNWEwMWQ2YzNmM2UyZWYxODIiLCJwIjoiaiJ9
+
+113
+
+chapter 7:
+System testing
+
+114
+
+7.
+
+System Testing
+This chapter presents the system testing of ASPIRA platform, carried out by targeted users
+to evaluate its performance, usability, and overall effectiveness. It begins with User Acceptance
+Testing (UAT) to ensure the platform is both functional and user-friendly. The following
+subsection provides demographic details of the participants involved in the evaluation. Next,
+we showcase the questionnaire results. The chapter concludes with a discussion analyzing the
+results to highlight ASPIRA's strengths and suggest areas for enhancement.
+
+7.1 User Acceptance Testing
+User Acceptance Testing (UAT) is a system evaluation that verifies whether the developed
+platform meets business requirements and is ready for real-world use. It emphasizes evaluating
+the system from the perspective of actual users, focusing on interface usability, technical
+performance, and identifying both strengths and areas for enhancement. For this evaluation,
+testing was carried out through the platform’s web interface by a group of selected end users
+specifically, three mentees and two mentors and one admin. Participants were asked to perform
+key tasks within the platform to simulate real usage scenarios.
+Mentor’s tasks:
+●
+
+Register
+
+● Log in
+● Log out
+● Reset password
+● Add session
+● View available and Upcoming sessions
+● Join session
+● View past sessions
+
+115
+
+Mentee’s tasks:
+● Register
+● Log in
+● Log out
+● Reset password
+● View Mentor center
+● Search mentors by name
+● Filter mentors by field and years of experience
+● View ratings and feedback submitted by mentees for the mentor
+● Book private session
+● View upcoming sessions
+● Join session
+● rate mentor and put comment
+● View past sessions
+Admin tasks:
+● Log in
+● Log out
+● Accept/Reject mentor requests
+
+In addition to completing these tasks, they also provided feedback by filling out a detailed
+questionnaire (Appendix C and Appendix D) designed to capture their overall experience,
+satisfaction, and suggestions for improvement.
+
+7.1.1 Demographics of Participants
+To better understand the background of the individuals involved in the User Acceptance
+Testing (UAT), this section presents the demographic information of the selected testers.
+Gathering these details helps provide context for interpreting the feedback and evaluating how
+well the platform meets the needs of its target users. The participants include mentors, mentees
+and admin, and their demographic data is summarized in Table [9] below.
+116
+
+Table 9 Demographics of Participants
+
+Age
+
+Participant 1
+
+23 - 49
+
+Gender
+
+Female
+
+Role
+
+Mentor
+
+level of
+
+Technological
+
+education
+
+skills
+
+Master’s
+
+intermediate
+
+degree
+Participant 2
+
+18 - 22
+
+Male
+
+Mentee
+
+Bachelor’s
+
+Advance
+
+degree
+Participant 3
+
+23 - 49
+
+Female
+
+Mentee
+
+Bachelor’s
+
+Advance
+
+degree
+Participant 4
+
+23 - 49
+
+Male
+
+Mentor
+
+Master’s
+
+Advance
+
+degree
+Participant 5
+
+18 - 22
+
+Female
+
+Mentee
+
+Bachelor’s
+
+intermediate
+
+degree
+Participant 6
+
+23 - 49
+
+Male
+
+Admin
+
+Master’s
+
+Advance
+
+degree
+
+7.1.2 Questionnaire/Interview Results
+This section presents the feedback collected from mentors, mentees and admin during the
+User Acceptance Testing (UAT), based on the questionnaire (Appendix C and Appendix D) as
+outlined in Table [10] and Table [11] below. A score of 1 indicates low, and 5 indicates high.
+Based on the mentors and mentees questionnaire responses, most users found the platform
+easy to use 4 out of 5 said it was user-friendly, and one strongly agreed. Regarding the
+platform’s visual design, 3 agreed it was clear and appealing, 1 strongly agreed, and 1 was
+neutral. For call quality, 2 participants rated it a 5, 2 rated it a 4, and 1 rated it a 3. When asked
+about using ASPIRA platform regularly for mentorship purposes 2 strongly agreed, 2 agreed,
+and 1 was neutral. Three users had no issues, while two reported a slight delay when joining
+117
+
+the call. One user suggested adding Arabic language support, and all 5 participants said they
+would recommend ASPIRA to others.
+Table 10 UAT questionnaire results (Mentors, Mentees)
+
+UAT questionnaire results (Mentors, Mentees)
+
+118
+
+UAT questionnaire results (Mentors, Mentees)
+
+119
+
+UAT questionnaire results (Mentors, Mentees)
+
+120
+
+UAT questionnaire results (Mentors, Mentees)
+
+During the User Acceptance Testing for the Admin role, the participant was asked several
+questions regarding his experience. When asked if the platform was easy to navigate and userfriendly, the participant strongly agreed as shown below. In addition, the clarity and visual
+appeal of the platform's layout and design, the participant again strongly agreed, when asked
+whether it was simple to view mentor profiles and attached documents, the participant
+answered "Yes". In response to whether any issues or difficulties were encountered during the
+testing process, the user responded "No." Additionally, when asked if they had any comments
+or suggestions for improving the platform, the participant commented, "No, the platform was
+easy to use." Overall, the response confirmed that the user found the system intuitive, visually
+clear, and efficient for managing mentor applications.
+
+121
+
+Table 11 UAT questionnaire results (Admin)
+
+UAT questionnaire results (Admin)
+
+122
+
+123
+
+7.2 Discussion
+The User Acceptance Testing (UAT) results reveal highly positive feedback from mentors,
+mentees and the admin participant, indicating that the ASPIRA platform effectively meets user
+needs and business requirements.
+The majority of users reported a smooth and satisfying experience. Notably, all mentors
+and mentee stated they would recommend ASPIRA to others, highlighting a high level of trust
+and perceived value in the platform. Most users found the platform easy to navigate and userfriendly, with 4 participants agreeing and 1 along with the admin participant strongly agreeing
+with this statement. In terms of design, 3 agreed and 2 strongly agreed, while one participant
+chose natural, that the platform’s layout is clear and visually appealing, indicating that minor
+visual improvements could enhance the experience further.
+Additionally, the Admin participant confirmed that it was simple to view mentor profiles
+and their attached documents, such as CV and certificates, indicating that the system effectively
+supports administrative review tasks
+Feedback on the statement "I would feel comfortable using ASPIRA regularly for
+mentorship purposes" reflected strong user confidence in the platform. Four out of five of
+mentors and mentees participants agreed or strongly agreed, while one responded neutrally. No
+users expressed discomfort or disagreement, reinforcing the platform’s suitability for
+continuous and real-world use.
+Regarding technical functionality, 4 of the users rated the call quality 4 or 5 out of 5, showing
+that the system performs well in real-time interactions, one user gave a rating of 3. Out of five
+respondents, three explicitly stated they experienced no difficulties. However, two users
+mentioned minor problems related to session connectivity specifically, a slight delay before
+the video call began. These delays did not disrupt the overall session's flow.
+User feedback, comments and suggestions were minimal but constructive. One tester
+suggested adding Arabic language support, which would increase accessibility for a wider
+audience, therefore, providing Arabic language will be part of our future work. Another
+participant described ASPIRA as a “great platform,”, and the admin participant stated “No the
+platform was easy to use” while some had no suggestions implying general satisfaction.
+124
+
+In conclusion the User Acceptance Testing results indicated that the ASPIRA platform
+successfully meets the expectations of its target users, offering a reliable, user-friendly, and
+effective mentorship experience. Testers responded positively across all key areas, from
+navigation and call quality to overall satisfaction and platform usability.
+
+125
+
+chapter 8:
+Conclusions
+
+126
+
+8.
+
+Conclusions and Future Work
+The integration of artificial intelligence within mentorship and career development reaches
+its greatest milestone through ASPIRA. ASPIRA was established with Saudi Arabia's youth
+support in mind to provide an organized scalable platform that links mentees with experienced
+mentors while supplying necessary tools for professional growth.
+We built the system to respond to genuine academic-to-workplace transition problems faced
+by students and recent graduates. Career-based problems that youth face are their restricted
+access to mentorship services combined with uncertain career paths and weak skills training
+materials. The platform of ASPIRA includes multiple features which combine one-on-one
+mentorship sessions with group mentorship sessions while delivering AI-based educational
+recommendations to users in addition to providing an automatic CV builder and an intelligent
+chatbot for instant help.
+The development work combined different fields of expertise which included user research
+together with requirement engineering along with literature reviews and architectural design
+and advanced software development methods. Each aspect of the platform development
+depended on user feedback to create a practical solution which continues providing relevant
+and usable features. Multiple rounds of development along with strategic plans and joint work
+efforts transformed ASPIRA into its current status as a modern digital mentorship platform
+meeting today's educational and professional criteria.
+
+8.1 Global and local impact
+The local impact of ASPIRA in Saudi Arabia is profound. The platform directly aligns with
+Vision 2030 by enabling Saudi youth to become job-market ready, develop soft and hard skills,
+and access meaningful mentorship without geographical barriers. ASPIRA fosters a supportive
+ecosystem where mentees gain confidence, explore new career paths, and build personal
+development strategies with the help of mentors who bring industry expertise.
+Through the AI-powered features, ASPIRA not only increases access to mentorship but also
+personalizes the experience, ensuring each mentee is matched with the most suitable mentor
+127
+
+based on their interests and goals. This leads to more effective outcomes, higher satisfaction,
+and better preparedness for professional life.
+On a global scale, ASPIRA has the potential to serve as a model for other countries facing
+similar gaps in career support systems. By combining mentorship with AI technologies like
+recommendation systems and chatbots, ASPIRA introduces a scalable framework that can be
+localized for different regions. It serves as an example of how technology can democratize
+access to professional guidance, enabling students and early-career professionals to succeed,
+regardless of background or resources.
+Furthermore, ASPIRA contributes to the global conversation on digital education and
+workforce readiness, offering insights into how technology can support lifelong learning,
+personalized development, and skill alignment with evolving job markets.
+
+8.2 Problems and challenges encountered during the software
+development
+Throughout the software development life cycle, the ASPIRA team encountered various
+technical and operational challenges, which required agile problem-solving and continuous
+learning. These challenges included:
+1. API Integration and Time Constraints
+During development, a key external API unexpectedly became unavailable, disrupting
+platform progress. The team had to invest time in finding a reliable alternative and updating
+the integration logic, which introduced delays and added technical complexity.
+2. Mentor and Mentee Role Separation
+A critical bug was identified where booked sessions incorrectly recorded the mentee ID
+as the mentor ID. Fixing this required restructuring backend logic and updating database
+queries to ensure role integrity.
+
+128
+
+3. Rating System Integration
+Implementing a one-time, non-editable 5-star rating system with comment support
+demanded careful design. Preventing duplicate submissions and dynamically updating
+mentor averages required advanced state handling.
+
+4. User Experience Consistency
+Creating a consistent, intuitive interface for mentors, mentees, and admins
+required multiple iterations. Balancing feature complexity with ease of use was a key
+design challenge.
+
+5. Database Optimization
+As features grew, so did the complexity of database interactions. The team worked on
+optimizing SQL queries, preventing redundancy, and ensuring referential integrity across
+tables such as users, sessions, ratings.
+
+8.3 Limitations of the system
+
+As with any project, ASPIRA has a number of limitations, many of which have been
+identified for future enhancement:
+● Language Support
+Currently, ASPIRA supports English only, which may exclude Arabic-speaking users or
+non-English speakers from fully utilizing the platform.
+
+129
+
+● API Call Limitations
+ASPIRA’s video session feature relies on a third-party API that provides a limited
+number of free calling minutes per month. This restriction could impact session
+availability or quality if usage exceeds the quota, especially during periods of high
+activity.
+
+● Mobile Responsiveness
+While the platform is accessible via browser, full optimization for mobile devices is still
+under development, potentially affecting the experience on small screens.
+
+● Lack of In-App Messaging
+Communication between mentors and mentees is limited to session time. There is no realtime chat feature to enable discussions outside scheduled meetings.
+
+8.4 The main contribution of the project
+ASPIRA offers several distinct contributions to the field of educational technology and
+career development:
+1. End-to-End Mentorship Platform
+○ ASPIRA offers a full ecosystem for career guidance, from mentor discovery
+and booking to session summaries, feedback, and real-time communication.
+
+130
+
+2. AI-Powered Chatbot
+○ The integration of a GPT-4-based chatbot offers mentees real-time, contextaware responses to common career and platform-related questions, increasing
+accessibility and user engagement.
+3. Course Recommendation Engine
+○ Using a content-based filtering approach, the system suggests tailored learning
+materials that support mentees' career paths, ensuring continuous growth
+outside of mentorship sessions.
+4. CV Builder
+o A guided CV builder to help mentees create professional resumes with ease,
+supporting their job applications and career development.
+
+8.5 Future work
+To enhance ASPIRA and expand its impact, the team has identified the following areas
+for future development:
+1. Arabic Language Support
+○ Translate and localize the entire platform interface and chatbot to support
+bilingual users in Saudi Arabia and other Arabic-speaking countries.
+
+131
+
+2. Mobile Application Development
+○ Launch dedicated iOS and Android apps with optimized interfaces for mobile
+use, ensuring greater accessibility and smoother user experience.
+3. Real-Time Messaging System
+○ Add secure, instant chat functionality between mentors and mentees to allow
+ongoing communication, file sharing, and scheduling support.
+
+4. Calendar Integration and Session Reminders
+○ Sync booked sessions with Google Calendar, Apple Calendar, or Outlook,
+with automatic reminders via email or push notification.
+5. Speech-Based Chatbot Support
+○ Enhance the chatbot to include voice interaction features, especially useful for
+users with disabilities or those preferring hands-free usage.
+6. Automated Mentor Onboarding
+○ Implement AI-powered CV parsing and scoring to assist admins in evaluating
+mentor applications and reduce manual workload.
+
+132
+
+chapter 9:
+References
+
+133
+
+9. References
+[1] ZEGOCLOUD API Documentation. Available at: https://www.zegocloud.com/docs
+(Accessed: 12 April 2025).
+[2] OpenAI PLATFORM Documentation. Available at:
+https://platform.openai.com/docs/overview (Accessed: 28 January 2025).
+[3] MySQL. Available at: https://www.mysql.com/ (Accessed: 12 January 2025).
+[4] Visual Studio. Available at: https://visualstudio.microsoft.com/ (Accessed: 12 January
+2025).
+[5] GitHub. Available at: https://github.com/ (Accessed: 12 January 2025).
+[6] Jira. Available at: https://www.atlassian.com/software/jira (Accessed: 12 January 2025).
+[7] CareerVillage. (n.d.). Why is Career Advice Important? Available at:
+https://www.careervillage.org/questions/994362/why-is-career-advice-important
+[8] Forbes Business Council. (2023). The Importance of Mentorship. Available at:
+https://www.forbes.com/councils/forbesbusinesscouncil/2023/07/05/the-importance-ofmentorship/
+[9] Mentoring Complete. (n.d.). The Benefits of Mentoring on Career Development.
+Available at: https://www.mentoringcomplete.com/benefits-of-mentoring-careerdevelopment (Accessed: 11 January 2025).
+[10] Intuitive Careers. (n.d.). The Importance of Continuous Learning and Professional
+Development. Available at: https://careers.intuitive.com/en/employee-stories/career-growthadvice/the-importance-of-continuous-learning-and-professional-development/
+[11] University of the People. (n.d.). What is Career Counseling? Available at:
+https://www.uopeople.edu/blog/what-is-career-counseling/
+
+134
+
+[12] Indeed. (n.d.). Challenges That Affect Career Goals. Available at:
+https://www.indeed.com/career-advice/career-development/challenges-that-affect-careergoals
+[13] Mentorink. (n.d.). Mentors and Mentees: Definitions and Responsibilities. Available at:
+https://www.mentorink.com/blog/mentors-and-mentees-definitions-and-responsibilities/
+[14] CollegeTools.io. (2023). The Emerging Role of Technology in Career Guidance.
+Available at: https://www.collegetools.io/blog/the-emerging-role-of-technology-in-careerguidance%3A-bridging-the-gap-in-the-digital-age
+[15] Brown, T., Mann, B., Ryder, N., Subbiah, M., Kaplan, J., Dhariwal, P., ... & Amodei,
+D. (2020). Language models are few-shot learners. Advances in Neural Information
+Processing Systems, 33, 1877-1901. Retrieved from
+https://proceedings.neurips.cc/paper/2020/file/1457c0d6bfcb4967418bfb8ac142f64aPaper.pdf
+[16] OpenAI. (2023). GPT-4 Technical Report. Retrieved from
+https://cdn.openai.com/papers/gpt-4.pdf
+[17] Miquido. (2025). Perks of Recommendation Systems in Business. Retrieved from
+https://www.miquido.com/blog/perks-of-recommendation-systems-in-business/
+[18] Singhal, A., Rastogi, S., Panchal, N., Chauhan, S., & Varshney, S. (2021). Research
+Paper on Recommendation System. Global Scientific Journal, 9(8), 935-938. Retrieved from
+https://www.globalscientificjournal.com/researchpaper/Research_Paper_On_Recommendatio
+n_System.pdf
+[19] Yunanda, Y., Anggraeni, R., & Setiowati, R. (2022). Recommendation System from
+Microsoft News Data using TF-IDF and Cosine Similarity Methods. ResearchGate. Available
+at:
+https://www.researchgate.net/publication/366981310_Recommendation_System_from_Micr
+osoft_News_Data_using_TF-IDF_and_Cosine_Similarity_Methods
+
+135
+
+[20] Miquido. (n.d.). Recommendation Systems: Benefits, Types & Examples. Retrieved from
+https://www.miquido.com/blog/perks-of-recommendation-systems-in-business/
+[21] Fayyaz, Z., Ebrahimian, M., Nawara, D., Ibrahim, A., & Kashef, R. (2020).
+Recommendation Systems: Algorithms, Challenges, Metrics, and Business Opportunities.
+Applied Sciences, 10(21), 7748. Retrieved from
+https://www.researchgate.net/publication/346585773_Recommendation_Systems_Algorithm
+s_Challenges_Metrics_and_Business_Opportunities
+[22] Human Resources Development Fund (HRDF). (2025). HRDF MentorCity – Career
+guidance and mentoring program in Saudi Arabia. Retrieved from https://www.hrdf.org.sa
+[23] MentorCity. (2025). MentorCity – Online mentorship platform for professionals and
+students. Retrieved from https://www.mentorcity.com
+[24] Graduway. (2025). Graduway – Alumni mentorship and career advising. Retrieved from
+https://www.graduway.com
+[25] LinkedIn. (2025). LinkedIn Learning – Professional development and skill-building
+courses. Retrieved from https://www.linkedin.com/learning
+[26] Qooper. (2025). Mentoring, Learning & Coaching Software. Retrieved from
+https://www.qooper.io/
+[27] MentorcliQ. (2025). Employee Mentoring Software. Retrieved from
+https://www.mentorcliq.com/
+[28] Nicholls, S. (2021). How long is the Career Coaching process? Executive Connexions.
+Retrieved from https://www.executiveconnexions.com/articles/career-coaching/how-long-isthe-career-coaching-process/
+
+136
+
+[29] Worley, J. (2024). PHPMailer: The classic email sending library for PHP. GitHub.
+Retrieved from https://github.com/PHPMailer/PHPMailer
+
+137
+
+10. Appendix A : interviews
+Table 12 Interview with mentor [1]
+
+Interview with mentor [1]
+Interviewee: Galah alharbi
+
+Interviewer: Aeshah Almukhlifi
+
+Location: phone call
+
+Date: 20 Jan 2025
+
+Question:
+
+Answers and Notes:
+
+Q1: Can you tell me about your major, your
+
+I have over 10 years of experience in software development,
+
+experience and what inspired you to start
+
+and I love my job. I started mentoring students in college,
+
+mentoring ?
+
+helping younger students, and I found it fun. Since then, I’ve
+continued mentoring because I enjoy helping others.
+
+I listen to what the mentee needs help with and what they want
+
+Q2: What strategies do you use to help
+mentees overcome challenges or achieve
+
+to achieve. Then, we break it into smaller steps and work on
+them one by one. I share advice from my experience and
+check in to support them.
+
+their goals?
+
+Q3: What do you find most challenging
+when communicating with mentees?
+
+The most challenging part is understanding what mentees
+really need, especially when they text me at an unsuitable time
+and seem angry. It can be hard to address their concerns
+effectively in those moments, so I try to stay calm, understand
+their frustration, and respond clearly once things settle.
+I see the technology makes mentoring easier by helping me
+
+Q4:How do you think technology can help
+improve the mentoring process?
+
+stay organized and share resources quickly. It also makes it
+simple to connect and communicate anytime, which is really
+helpful.
+
+138
+
+Q5:Do you believe a platform offering
+flexibility in communication methods (like
+
+Yes, I think having options like video would make mentoring
+
+video) would make the mentoring process
+more effective?
+
+better. Video calls help with clearer communication and
+understanding emotions, which can be harder through text.
+
+Table 13 Interview with mentor [2]
+
+Interview with mentor [2]
+Interviewee name : Shaden Alshehri
+
+Interviewer : Ghadi Alzahrani
+
+Location: Zoom meeting
+
+Date: 20 Jan 2025
+
+Question:
+
+Answers and Notes:
+
+Q1: Can you tell me about your major, your
+
+My major is business administration, and I’ve been
+
+experience and what inspired you to start
+
+working in marketing for 8 years. I'm specialized in
+
+mentoring ?
+
+branding. I’ve always enjoyed sharing my knowledge
+and helping others.
+
+Q2: What strategies do you use to help
+mentees overcome challenges or achieve
+their goals?
+
+I focus on helping mentees understand their goals
+clearly and then work with them to create a step-bystep plan. on the other hand for the challenges first
+listen to their challenges and understand what’s
+holding them back. Then, I work with them to create a
+clear plan and provide resources that can help.
+
+Q3: What do you find most challenging
+when communicating with mentees?
+
+For me, the hardest part is when mentees don’t
+communicate regularly or delay responses. It makes it
+difficult to stay aligned with their progress.
+
+139
+
+Q4:How do you think technology can help
+improve the mentoring process?
+
+can make mentoring more accessible and efficient.
+and allow mentors and mentees to collaborate easily,
+even if they’re in different locations.
+
+Q5:Do you believe a platform offering
+flexibility in communication methods (like
+video) would make the mentoring process
+more effective?
+
+Of course. Video communication allows for better
+interaction, as you can see expressions and body
+language, making the mentoring process clearer,
+engaging and real.
+
+140
+
+Table 14 Interview with mentor [3]
+
+Interview with mentor [3]
+Interviewee name : Haifa Alsaif
+
+Interviewer : Ghadi Alzahrani
+
+Location: Zoom meeting
+
+Date: 20 Jan 2025
+
+Question:
+
+Answers and Notes:
+
+Q1: Can you tell me about your major, your
+
+I studied Finance and investments and have been
+
+experience and what inspired you to start
+
+working in project management since graduation for
+
+mentoring ?
+
+almost 6 years. I started mentoring when I noticed
+how many people struggled with planning. I wanted
+to share the strategies that worked for me to help
+others.
+
+Q2: What strategies do you use to help
+mentees overcome challenges or achieve
+their goals?
+
+My strategy is to identify the root cause of any
+challenge. I then guide them in setting realistic goals
+and finding practical solutions. I like to use real
+world examples from my own experience to show
+them how to handle similar situations.
+
+Q3: What do you find most challenging
+when communicating with mentees?
+
+Q4:How do you think technology can help
+improve the mentoring process?
+
+The most challenging part is when mentees are not
+clear about what they want to achieve or struggle to
+explain their challenges.
+
+Technology makes mentoring easier by helping with
+things like scheduling meetings and staying in touch.
+It makes communication faster and keeps everything
+simple.
+
+141
+
+Q5:Do you believe a platform offering
+flexibility in communication methods (like
+video) would make the mentoring process
+
+Yes, it would definitely improve mentoring. It makes
+conversations more personal and helps in explaining
+things more effectively.
+
+more effective?
+
+142
+
+11. Appendix B : questionnaire
+
+143
+
+144
+
+145
+
+Figure 29 Figure 29
+
+146
+
+147
+
+12. Appendix C : UAT questionnaire (Mentors and
+Mentees)
+
+148
+
+13. Appendix D : UAT questionnaire (Admin)
+
+149
+
+
