@@ -27,23 +27,3 @@ ASPIRA is a digital platform that connects mentees with experienced mentors for 
    - `vendor/autoload.php`  
 6. **Run** the project 🚀
 7. Or use the website link : https://aspira.sbs/ -> use diffrenebt browsers for mentor & mentee
-
-## login credentials
-For the mentors :
-- Email : atata.4343@gmail.com
-- Password : QAZ@qaz1
-
-- Email : aeshahalmukhlifi@gmail.com
-- Password : QAZ@qaz2
-
-For the mentees :
-- Email : alawadtv0@gmail.com
-- Password : QAZ@qaz1
-
-For the admin :
-- Email : abd123@gmail.com
-- Password : 123456
-
-
-## Github repository link
-https://github.com/nouraalw/2025_GP_02
